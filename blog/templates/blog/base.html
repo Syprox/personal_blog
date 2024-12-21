@@ -1,0 +1,67 @@
+<!-- templates/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <title>Мій блог</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Sans+Narrow:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  </head>
+
+  <body>
+    {% block header %}
+      <header>
+        <div id="logo">
+          <h1>Мій особистий блог</h1>
+        </div>
+        {% block navigation %}
+          <nav>
+            <ul>
+              <li>
+                <a href="{% url 'blog_index' %}">Головна</a>
+              </li>
+              <li>
+                <a href="{% url 'page_detail' 'about_me' %}">Про мене</a>
+              </li>
+              <li>
+                <a href="{% url 'page_detail' 'contacts' %}">Контакти</a>
+              </li>
+            </ul>
+          </nav>
+        {% endblock %}
+      </header>
+    {% endblock %}
+    {% block main %}
+      <main>
+        {% block page_title %}
+
+        {% endblock %}
+
+        {% block page_content %}
+
+        {% endblock %}
+
+        {% block pagination %}
+
+        {% endblock %}
+
+        {% block image_upload %}
+
+        {% endblock %}
+      </main>
+    {% endblock %}
+    {% block footer %}
+      <footer>
+        <p>&copy; 2024 Сергій Савін</p>
+      </footer>
+    {% endblock %}
+    {% block scripts %}
+      <script src="{% static 'js/main-script.js' %}"></script>
+    {% endblock %}
+  </body>
+</html>
