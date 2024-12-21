@@ -14,6 +14,5 @@ urlpatterns = [
     path("post/<slug>/", views.blog_detail, name="blog_detail"),
     path("page/<slug>/", views.page_detail, name="page_detail"),
     path("category/<category>/", views.blog_category, name="blog_category"),
-    path('tinymce/', include('tinymce.urls')),
     path('upload/', views.image_upload_view, name="image_upload")
 ]

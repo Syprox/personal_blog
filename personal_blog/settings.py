@@ -16,7 +16,7 @@ import os
 
 try:
     from dotenv import load_dotenv
-    load_dotenv() # Завантаження змінних середовища з .env файлу
+    load_dotenv() # Завантаження змінних з .env файлу
 except:
     pass
 
@@ -31,6 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -47,6 +48,7 @@ MEDIA_URL = 'https://media.syprox.pp.ua/'
 # Application definition
 
 INSTALLED_APPS = [
+    'tinymce',
     'django.contrib.sitemaps',
     'blog.apps.BlogConfig',
     'django.contrib.admin',
@@ -55,7 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tinymce',
+    
 ]
 
 MIDDLEWARE = [
@@ -145,16 +147,37 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TINYMCE_JS_URL = 'https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js'
 TINYMCE_DEFAULT_CONFIG = {
-    'height': 360,
-    'width': 1000,
+    'height': 720,
+    'width': 1200,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'relative_urls': False,
+    'plugins':
+            'advlist textcolor save link image media preview codesample contextmenu\
+            table code lists fullscreen insertdatetime nonbreaking\
+            contextmenu directionality searchreplace wordcount visualblocks\
+            visualchars code fullscreen autolink lists charmap print hr\
+            anchor pagebreak',
+    'toolbar1': 'fullscreen preview bold italic underline | fontselect,\
+            fontsizeselect  | forecolor backcolor | alignleft alignright \
+            aligncenter alignjustify | indent outdent | bullist numlist table |\
+            | link image media codesample |',
+    'toolbar2': 'visualblocks visualchars |\
+            charmap hr pagebreak nonbreaking anchor |  code |',
+    'contextmenu': 'formats | link image',
     'menubar': True,
-    'plugins': "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount",
+    'statusbar': True,
+    
+    }
+
+""" TINYMCE_DEFAULT_CONFIG = {
+    
+    
+    'plugins': " autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount",
     'toolbar': "undo redo | formatselect | bold italic backcolor | \
                 alignleft aligncenter alignright alignjustify | \
                 bullist numlist outdent indent | removeformat | help",
     'content_css': '//www.tiny.cloud/css/codepen.min.css'
-}
-TINYMCE_SPELLCHECKER = False
-TINYMCE_COMPRESSOR = True
+} """
+

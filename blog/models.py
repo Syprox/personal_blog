@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from tinymce import models as tinymce_models
+from tinymce.models import HTMLField
 
 STATUS = (
     (0,"Чернетка"),
@@ -23,7 +23,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=False)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
-    content =  tinymce_models.HTMLField()
+    content =  HTMLField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now= True)
     category = models.ManyToManyField(Category, related_name="post_category")
@@ -44,7 +44,7 @@ class Page(models.Model):
     title = models.CharField(max_length=200, unique=False)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_page')
-    content =  tinymce_models.HTMLField()
+    content =  HTMLField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now= True)
     status = models.IntegerField(choices=STATUS, default=0)
@@ -62,7 +62,7 @@ class Page(models.Model):
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
     author = models.CharField(max_length=60)
-    message = tinymce_models.HTMLField()
+    message = HTMLField()
     created_on = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments')
 
