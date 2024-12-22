@@ -147,6 +147,9 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+TINYMCE_COMPRESSOR = False
+
 TINYMCE_DEFAULT_CONFIG = {
     'height': 720,
     'width': 1200,
@@ -170,14 +173,3 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
     
     }
-
-""" TINYMCE_DEFAULT_CONFIG = {
-    
-    
-    'plugins': " autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount",
-    'toolbar': "undo redo | formatselect | bold italic backcolor | \
-                alignleft aligncenter alignright alignjustify | \
-                bullist numlist outdent indent | removeformat | help",
-    'content_css': '//www.tiny.cloud/css/codepen.min.css'
-} """
-

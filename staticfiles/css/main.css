@@ -12,6 +12,7 @@
 html {
   font-size: 16px;
   min-height: 100vh;
+  background-color: hsl(240, 20%, 98%);
 }
 
 body {
@@ -23,6 +24,32 @@ body {
   width: clamp(20em, 90%, 44em);
   margin: 0 auto;
   min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1em;
+  backrground-color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  gap: 1em;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+}
+nav a {
+  text-decoration: none;
+  color: #000;
+  font-family: "PT Sans Narrow", serif;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
 }
 
 main h1 {

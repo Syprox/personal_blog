@@ -17,7 +17,7 @@ class CommentForm(forms.Form):
     )
     message = forms.CharField(
         widget=TinyMCEWidget( 
-            attrs={'required': False, 'cols': 30, 'rows': 10} 
+            attrs={'required': False, 'cols': 30, 'rows': 10, "placeholder": "Повідомлення"}
         ) 
     )
 

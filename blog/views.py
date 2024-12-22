@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from blog.models import Post, Comment, Page
+from blog.models import Post, Comment, Page, Category
 from django.http import HttpResponseRedirect
 from blog.forms import CommentForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -11,11 +11,13 @@ def page_detail(request, slug):
 
 def blog_index(request):
     posts = Post.objects.filter(status=1).order_by('-created_on')
+    categories = Category.objects.get_queryset().order_by('name')
     posts_on_page = 3
     page_number = request.GET.get('page')
 
     context = {'page': page_number,
-               'posts': get_posts_list(posts, page_number, posts_on_page)}
+               'posts': get_posts_list(posts, page_number, posts_on_page),
+               'categories': categories}
 
     return render(request,
                   'blog/index.html',
