@@ -25,7 +25,7 @@
   </script>
   <body>
     {% block info %}
-      <div class="info_header">Сайт у розробці. Інформація</div>
+      <div id="info_header">Сайт у розробці. Ви бачите недостовірну, неправильну інфомацію.</div>
     {% endblock %}
     {% block header %}
       <header aria-label="Page header conatiner">
@@ -49,34 +49,38 @@
         {% endblock %}
       </header>
     {% endblock %}
-    {% block sidebar %}
-      <aside aria-label="Left navigation bar conatiner">
-        <h2>Категорії</h2>
-        <ul>
-          {% for category in categories %}
-            <li>
-              <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      </aside>
-    {% endblock %}
+
     {% block main %}
       <main>
-        {% block page_title %}
-
+        {% block sidebar %}
+          <aside aria-label="Left navigation bar conatiner">
+            <h2>Категорії</h2>
+            <ul>
+              {% for category in categories %}
+                <li>
+                  <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </aside>
         {% endblock %}
+        {% block content %}
+          <section aria-label="Main content conatiner">
+            {% block page_title %}
 
-        {% block page_content %}
+            {% endblock %}
+            <article>
+              {% block page_content %}
 
-        {% endblock %}
+              {% endblock %}
+              {% block image_upload %}
 
-        {% block pagination %}
+              {% endblock %}
+            </article>
+            {% block pagination %}
 
-        {% endblock %}
-
-        {% block image_upload %}
-
+            {% endblock %}
+          </section>
         {% endblock %}
       </main>
     {% endblock %}

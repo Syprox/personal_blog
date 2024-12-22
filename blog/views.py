@@ -23,9 +23,10 @@ def blog_index(request):
                   'blog/index.html',
                   context)
 
-def blog_category(request, category):
+def blog_category(request, slug):
 
-    posts = Post.objects.filter(category__name__contains=category, status=1).order_by("-created_on")
+    posts = Post.objects.filter(category__slug__icontains=slug, status=1).order_by("-created_on")
+    category = Category.objects.get(slug=slug)
     posts_on_page = 2
     page_number = request.GET.get('page')
 

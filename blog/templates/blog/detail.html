@@ -20,12 +20,13 @@
     <div>{{ form.message }}</div>
     <button type="submit" class="btn btn-primary">Зберегти</button>
   </form>
-
-  <h3>Коментарі:</h3>
-  {% for comment in comments %}
-    <p>
-      {{ comment.created_on.date }} <b>{{ comment.author }}</b> написав(ла):
-    </p>
-    <p>{{ comment.message|linebreaks }}</p>
-  {% endfor %}
+  {% if comments %}
+    <h3>Коментарі:</h3>
+    {% for comment in comments %}
+      <p>
+        {{ comment.created_on.date }} <b>{{ comment.author }}</b> написав(ла):
+      </p>
+      <p>{{ comment.message|linebreaks }}</p>
+    {% endfor %}
+  {% endif %}
 {% endblock %}
