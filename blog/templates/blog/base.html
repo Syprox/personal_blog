@@ -24,6 +24,9 @@
     gtag('config', 'G-CNKBC2K282')
   </script>
   <body>
+    {% block info %}
+      <div class="info_header">Сайт у розробці. Інформація</div>
+    {% endblock %}
     {% block header %}
       <header aria-label="Page header conatiner">
         <div id="logo">
@@ -52,7 +55,7 @@
         <ul>
           {% for category in categories %}
             <li>
-              <a href="{% url 'blog_category' category.name %}">{{ category.name }}</a>
+              <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
             </li>
           {% endfor %}
         </ul>
