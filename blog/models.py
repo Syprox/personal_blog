@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from tinymce.models import HTMLField
+from django.utils import timezone
 
 STATUS = (
     (0,"Чернетка"),
@@ -10,29 +11,29 @@ STATUS = (
 
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=30)
-    slug = models.SlugField(max_length=30, unique=True)
+    name = models.CharField(max_length=30, verbose_name="Назва")
+    slug = models.SlugField(max_length=30, unique=True, verbose_name="Посилання")
 
     class Meta:
-        verbose_name_plural = "Розділ"
+        verbose_name_plural = "Розділи"
 
     def __str__(self):
         return self.name
 
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200, unique=False)
-    slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
+    title = models.CharField(max_length=200, unique=False, verbose_name="Назва")
+    slug = models.SlugField(max_length=200, unique=True, verbose_name="Посилання")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author',  verbose_name="Автор")
     content =  HTMLField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(default=timezone.now, verbose_name="Дата створення допису")
     updated_on = models.DateTimeField(auto_now= True)
-    category = models.ManyToManyField(Category, related_name="post_category")
-    status = models.IntegerField(choices=STATUS, default=0)
+    category = models.ManyToManyField(Category, related_name="post_category",  verbose_name="Розділ")
+    status = models.IntegerField(choices=STATUS, default=0, verbose_name="Стан допису")
 
     class Meta:
         ordering = ['-created_on']
-        verbose_name_plural = "Допис"
+        verbose_name_plural = "Дописи"
 
     def get_absolute_url(self):
         return reverse("blog_detail", kwargs={"slug": str(self.slug)})
@@ -42,17 +43,17 @@ class Post(models.Model):
     
 class Page(models.Model):
     page_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200, unique=False)
-    slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_page')
+    title = models.CharField(max_length=200, unique=False, verbose_name="Назва")
+    slug = models.SlugField(max_length=200, unique=True, verbose_name="Посилання")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_page', verbose_name="Автор")
     content =  HTMLField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True, verbose_name="Дата створення сторінки")
     updated_on = models.DateTimeField(auto_now= True)
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(choices=STATUS, default=0, verbose_name="Стан сторінки")
 
     class Meta:
         ordering = ['-created_on']
-        verbose_name_plural = "Сторінка"
+        verbose_name_plural = "Сторінки"
 
     def get_absolute_url(self):
         return reverse("page_detail", kwargs={"slug": str(self.slug)})
@@ -62,24 +63,24 @@ class Page(models.Model):
 
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
-    author = models.CharField(max_length=60)
+    author = models.CharField(max_length=60, verbose_name="Автор")
     message = HTMLField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments')
+    created_on = models.DateTimeField(auto_now_add=True, verbose_name="Дата створення коментаря")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments', verbose_name="Допис")
 
     class Meta:
         ordering = ['-created_on']
-        verbose_name_plural = "Коментар"
+        verbose_name_plural = "Коментарі"
 
     def __str__(self):
         return f"{self.author} прокоментував '{self.post}'"
     
 class Image(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=50, unique=True)
-    created_on = models.DateTimeField(auto_now_add=True, null=True)
-    category = models.ManyToManyField(Category, related_name='category_image')
-    image = models.ImageField(upload_to='images')
+    title = models.CharField(max_length=200, verbose_name="Назва")
+    slug = models.SlugField(max_length=50, unique=True, verbose_name="Посилання")
+    created_on = models.DateTimeField(auto_now_add=True, null=True, verbose_name="Дата створення зображення")
+    category = models.ManyToManyField(Category, related_name='category_image', verbose_name="Розділ")
+    image = models.ImageField(upload_to='images', verbose_name="Зображення")
 
     
     def __str__(self):
