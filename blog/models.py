@@ -25,7 +25,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=False, verbose_name="Назва")
     slug = models.SlugField(max_length=200, unique=True, verbose_name="Посилання")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author',  verbose_name="Автор")
-    content =  HTMLField()
+    content = HTMLField(verbose_name="Вміст допису")
     created_on = models.DateTimeField(default=timezone.now, verbose_name="Дата створення допису")
     updated_on = models.DateTimeField(auto_now= True)
     category = models.ManyToManyField(Category, related_name="post_category",  verbose_name="Розділ")
@@ -46,7 +46,7 @@ class Page(models.Model):
     title = models.CharField(max_length=200, unique=False, verbose_name="Назва")
     slug = models.SlugField(max_length=200, unique=True, verbose_name="Посилання")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_page', verbose_name="Автор")
-    content =  HTMLField()
+    content =  HTMLField(verbose_name="Вміст сторінки")
     created_on = models.DateTimeField(auto_now_add=True, verbose_name="Дата створення сторінки")
     updated_on = models.DateTimeField(auto_now= True)
     status = models.IntegerField(choices=STATUS, default=0, verbose_name="Стан сторінки")
@@ -64,7 +64,7 @@ class Page(models.Model):
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
     author = models.CharField(max_length=60, verbose_name="Автор")
-    message = HTMLField()
+    message = HTMLField(verbose_name="Повідомлення")
     created_on = models.DateTimeField(auto_now_add=True, verbose_name="Дата створення коментаря")
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments', verbose_name="Допис")
 
