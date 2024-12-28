@@ -7,6 +7,9 @@
   --fs-3: clamp(1.2148rem, 1.1341rem + 0.4036vw, 1.7798rem);
   --fs-4: clamp(1.2962rem, 1.1953rem + 0.5044vw, 2.0023rem);
   --fs-5: clamp(1.383rem, 1.2588rem + 0.6211vw, 2.2525rem);
+  --color: red;
+  --mix: hsl(0, 0%, 0%);
+  --contrast: color-mix(in lab, currentColor 15%, var(--mix) 85%);
 }
 
 *,
@@ -30,62 +33,111 @@ body {
   line-height: 1.25;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  row-gap: 1em;
+  grid: "information" auto "header" auto "main" 1fr "footer" auto/1fr;
+  row-gap: 0;
   -moz-column-gap: 1em;
        column-gap: 1em;
   background-color: hsl(240, 20%, 98%);
 }
 
+.information {
+  grid-area: information;
+}
+
 header {
+  grid-area: header;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+}
+
+.information {
+  text-align: center;
+  font-size: var(--fs--1);
+  padding: 0.6em;
+  margin: 0.2em;
+}
+
+.header_wrapper {
+  padding: 1em 1.4em;
+  background-color: hsl(216, 5%, 18%);
+}
+
+header {
+  margin-inline: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em 1.4em;
-  background-color: hsl(216, 5%, 18%);
+  width: clamp(20em, 80%, 60em);
+}
+header a {
+  text-decoration: none;
+  font-size: var(--fs--1);
   color: azure;
 }
-
-nav ul {
+header nav ul {
   display: flex;
   gap: 1em;
   list-style: none;
   align-items: center;
   justify-content: center;
-}
-nav a {
-  text-decoration: none;
-  color: #000;
-  font-family: "PT Sans Narrow", serif;
-  font-weight: 700;
-  font-style: normal;
-  text-transform: uppercase;
-  font-size: var(--fs--1);
+  /* @include root.pt-sans-narrow-regular; */
 }
 
+.main_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+main {
+  display: flex;
+  gap: 1em;
+  width: clamp(20em, 98%, 46em);
+}
+main aside,
+main section,
+main .information {
+  padding: 0 1.4em;
+}
+main aside {
+  width: clamp(10em, 20%, 16em);
+}
+main .categories_list ul {
+  list-style: none;
+}
+main section {
+  width: clamp(20em, 98%, 46em);
+}
 main h1 {
   font-size: var(--fs-5);
-  margin: 1.6em 0 0.825em;
+  margin: 1.3em 0 0.7em;
 }
 main h2 {
   font-size: var(--fs-4);
-  margin: 1.4em 0 0.725em;
+  margin: 1.1em 0 0.6em;
 }
 main h3 {
   font-size: var(--fs-3);
-  margin: 1.2em 0 0.625em;
+  margin: 0.9em 0 0.5em;
 }
 main h4 {
   font-size: var(--fs-2);
-  margin: 1em 0 0.525em;
+  margin: 0.7em 0 0.4em;
 }
 main h5 {
   font-size: var(--fs-1);
-  margin: 0.8em 0 0.425em;
+  margin: 0.5em 0 0.3em;
 }
 main h6 {
   font-size: var(--fs-0);
-  margin: 0.6em 0 0.325em;
+  margin: 0.3em 0 0.2em;
 }
 main h1,
 main h2,
@@ -102,4 +154,13 @@ main p {
   margin: 0.4em 0;
   color: #1a1a1a;
   line-height: 1.25;
+}
+
+.footer_wrapper {
+  padding: 0.6em;
+}
+
+footer {
+  width: clamp(20em, 80%, 60em);
+  margin-inline: auto;
 }/*# sourceMappingURL=main.css.map */

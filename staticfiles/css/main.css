@@ -7,6 +7,9 @@
   --fs-3: clamp(1.2148rem, 1.1341rem + 0.4036vw, 1.7798rem);
   --fs-4: clamp(1.2962rem, 1.1953rem + 0.5044vw, 2.0023rem);
   --fs-5: clamp(1.383rem, 1.2588rem + 0.6211vw, 2.2525rem);
+  --color: red;
+  --mix: hsl(0, 0%, 0%);
+  --contrast: color-mix(in lab, currentColor 15%, var(--mix) 85%);
 }
 
 *,
@@ -30,11 +33,27 @@ body {
   line-height: 1.25;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid: "information" auto "header" auto "main" 1fr "footer" auto/1fr;
   row-gap: 1em;
   -moz-column-gap: 1em;
        column-gap: 1em;
   background-color: hsl(240, 20%, 98%);
+}
+
+.information {
+  grid-area: information;
+}
+
+header {
+  grid-area: header;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
 }
 
 header {

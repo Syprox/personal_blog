@@ -1,11 +1,14 @@
 <!-- blog/templates/blog/page.html -->
 {% extends 'blog/base.html' %}
-{% block page_title %}
-  <h2>{{ page.title }}</h2>
-{% endblock %}
 {% block page_content %}
-  <div>
-    <small>{{ page.created_on.date }}</small>
-  </div>
-  <article>{{ page.content|safe }}</article>
+  {% include 'blog/categories_list.html' %}
+  <section>
+    <h2>{{ page.title }}</h2>
+
+    <div>
+      <small>{{ page.created_on.date }}</small>
+    </div>
+
+    <article>{{ page.content|safe }}</article>
+  </section>
 {% endblock %}

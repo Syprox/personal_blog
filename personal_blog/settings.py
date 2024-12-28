@@ -147,7 +147,6 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TINYMCE_JS_URL = 'https://cdn.tiny.cloud/1/wcu3dc9unpnpd552auqloswompix2yoe0uxls4wq4ijmm2pf/tinymce/7/tinymce.min.js'
 TINYMCE_COMPRESSOR = False
 
 TINYMCE_DEFAULT_CONFIG = {

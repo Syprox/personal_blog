@@ -1,32 +1,21 @@
 <!-- blog/templates/blog/detail.html -->
 {% extends 'blog/base.html' %}
-{% block page_title %}
-  <h2>{{ post.title }}</h2>
-{% endblock %}
-{% block page_content %}
-  <div>
-    <small>
-      {{ post.created_on.date }} | Розділ:{% for category in post.category.all %}
-        <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
-      {% endfor %}
-    </small>
-  </div>
-  <article>{{ post.content|safe }}</article>
 
-  <h3>Залиште коментар:</h3>
-  <form method="post">
-    {% csrf_token %}
-    <div>{{ form.author }}</div>
-    <div>{{ form.message }}</div>
-    <button type="submit" class="btn btn-primary">Зберегти</button>
-  </form>
-  {% if comments %}
-    <h3>Коментарі:</h3>
-    {% for comment in comments %}
-      <p>
-        {{ comment.created_on.date }} <b>{{ comment.author }}</b> написав(ла):
-      </p>
-      <p>{{ comment.message|linebreaks }}</p>
-    {% endfor %}
-  {% endif %}
+{% block page_content %}
+  <section>
+    <article>
+      <h2>{{ post.title }}</h2>
+      <div class="post_info">
+        <small>
+          {{ post.created_on.date }} | Розділ:{% for category in post.category.all %}
+            <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
+          {% endfor %}
+        </small>
+      </div>
+      {{ post.content|safe }}
+    </article>
+    {% if post %}
+      {% include 'blog/comments.html' %}
+    {% endif %}
+  </section>
 {% endblock %}

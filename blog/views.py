@@ -12,7 +12,7 @@ def page_detail(request, slug):
 def blog_index(request):
     posts = Post.objects.filter(status=1).order_by('-created_on')
     categories = Category.objects.get_queryset().order_by('name')
-    posts_on_page = 3
+    posts_on_page = 2
     page_number = request.GET.get('page')
 
     context = {'page': page_number,
@@ -69,13 +69,11 @@ def get_posts_list (posts, page_number, posts_on_page):
         posts_list = pages.page(page_number)
         print('Try worked')
     except PageNotAnInteger:
-            # If page is not an integer deliver the first page
+        # If page is not an integer deliver the first page
         posts_list = pages.page(1)
-        print('Exception 1')
     except EmptyPage:
         # If page is out of range deliver last page of results
         posts_list = pages.page(pages.num_pages)
-        print('Exception 2')
 
     return posts_list
 

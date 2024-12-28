@@ -1,0 +1,18 @@
+<header aria-label="Page header conatiner">
+  <div id="logo">
+    <a href="{% url 'blog_index' %}"><h1>СВС</h1></a>
+  </div>
+  <nav aria-label="Pages list">
+    <ul>
+      <li>
+        <a href="{% url 'blog_index' %}">Головна</a>
+      </li>
+      <li>
+        <a href="{% url 'page_detail' 'about_me' %}">Про мене</a>
+      </li>
+      <li>
+        <a href="{% url 'page_detail' 'contacts' %}">Контакти</a>
+      </li>
+    </ul>
+  </nav>
+</header>

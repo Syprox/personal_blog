@@ -1,96 +1,31 @@
-<!-- templates/base.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="uk">
-  <head>
-    <meta charset="utf-8" />
-    <title>Мій блог</title>
+  {% include 'blog/head.html' %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Sans+Narrow:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-  </head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNKBC2K282"></script>
-  <script>
-    window.dataLayer = window.dataLayer || []
-    function gtag() {
-      dataLayer.push(arguments)
-    }
-    gtag('js', new Date())
-    
-    gtag('config', 'G-CNKBC2K282')
-  </script>
   <body>
-    {% block info %}
-      <div class="box" data-type="warning">Сайт у розробці. Ви бачите недостовірну, неправильну інфомацію.</div>
-    {% endblock %}
-    {% block header %}
-      <header aria-label="Page header conatiner">
-        <div id="logo">
-          <h1>Мій особистий блог</h1>
-        </div>
-        {% block navigation %}
-          <nav>
-            <ul>
-              <li>
-                <a href="{% url 'blog_index' %}">Головна</a>
-              </li>
-              <li>
-                <a href="{% url 'page_detail' 'about_me' %}">Про мене</a>
-              </li>
-              <li>
-                <a href="{% url 'page_detail' 'contacts' %}">Контакти</a>
-              </li>
-            </ul>
-          </nav>
-        {% endblock %}
-      </header>
-    {% endblock %}
+    <div class="information box" data-type="warning">Сайт у розробці. Ви бачите недостовірну, неправильну інфомацію.</div>
 
-    {% block main %}
+    <div class="header_wrapper">
+      {% include 'blog/header.html' %}
+    </div>
+    <div class="main_wrapper">
       <main>
-        {% block sidebar %}
-          <aside aria-label="Left navigation bar conatiner">
-            <h2>Категорії</h2>
-            <ul>
-              {% for category in categories %}
-                <li>
-                  <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </aside>
+        {% block page_content %}
+
         {% endblock %}
-        {% block content %}
-          <section aria-label="Main content conatiner">
-            {% block page_title %}
+        {% block image_upload %}
 
-            {% endblock %}
-            <article>
-              {% block page_content %}
+        {% endblock %}
 
-              {% endblock %}
-              {% block image_upload %}
+        {% block pagination %}
 
-              {% endblock %}
-            </article>
-            {% block pagination %}
-
-            {% endblock %}
-          </section>
         {% endblock %}
       </main>
-    {% endblock %}
-    {% block footer %}
-      <footer>
-        <p>&copy; 2024 Сергій Савін</p>
-      </footer>
-    {% endblock %}
-    {% block scripts %}
-      <script src="{% static 'js/main-script.js' %}"></script>
-    {% endblock %}
+    </div>
+    <div class="footer_wrapper">
+      {% include 'blog/footer.html' %}
+    </div>
+    <script src="{% static 'js/main-script.js' %}"></script>
   </body>
 </html>

@@ -1,0 +1,14 @@
+{% if categories %}
+  {% block sidebar %}
+    <aside class="categories_list" aria-label="Left navigation bar conatiner">
+      <h2>Розділи:</h2>
+      <ul>
+        {% for category in categories %}
+          <li>
+            <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </aside>
+  {% endblock %}
+{% endif %}
