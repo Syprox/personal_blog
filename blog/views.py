@@ -9,37 +9,36 @@ def page_detail(request, slug):
     page = Page.objects.get(slug=slug)
     return render(request, 'blog/page.html', {'page': page})
 
-def blog_index(request):
-    posts = Post.objects.filter(status=1).order_by('-created_on')
+def blog_index(request, slug=None):
+    category = False
+    
+    if slug is not None:
+        posts = Post.objects.filter(category__slug__icontains=slug, status=1).order_by("-created_on")
+        category = Category.objects.get(slug=slug)
+    else:
+        posts = Post.objects.filter(status=1).order_by('-created_on')
+        
     categories = Category.objects.get_queryset().order_by('name')
-    posts_on_page = 2
-    page_number = request.GET.get('page')
 
-    context = {'page': page_number,
-               'posts': get_posts_list(posts, page_number, posts_on_page),
-               'categories': categories}
-
-    return render(request,
-                  'blog/index.html',
-                  context)
-
-def blog_category(request, slug):
-
-    posts = Post.objects.filter(category__slug__icontains=slug, status=1).order_by("-created_on")
-    category = Category.objects.get(slug=slug)
     posts_on_page = 2
     page_number = request.GET.get('page')
 
     context = {'page': page_number,
                'category': category,
-               'posts': get_posts_list(posts, page_number, posts_on_page)}
-    
+               'categories': categories,
+               'posts': get_posts_list(posts, page_number, posts_on_page),
+               }
+
     return render(request,
-                  'blog/category.html',
+                  'blog/index.html',
                   context)
 
 def blog_detail(request, slug):
-    post = Post.objects.get(slug=slug)
+    categories = Category.objects.get_queryset().order_by('name')
+    try:
+        post = Post.objects.get(slug=slug)
+    except Post.DoesNotExist:
+        return blog_index(request)
     form = CommentForm()
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -57,6 +56,7 @@ def blog_detail(request, slug):
     context = {
         "post": post,
         "comments": comments,
+        'categories': categories,
         "form": CommentForm(),
     }
 
@@ -67,7 +67,6 @@ def get_posts_list (posts, page_number, posts_on_page):
     
     try:
         posts_list = pages.page(page_number)
-        print('Try worked')
     except PageNotAnInteger:
         # If page is not an integer deliver the first page
         posts_list = pages.page(1)
