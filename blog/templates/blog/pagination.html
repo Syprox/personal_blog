@@ -4,12 +4,12 @@
       <ul>
         {% if posts.has_previous %}
           <li>
-            <a href="?page={{ posts.previous_page_number }}">&laquo; Назад</a>
+            <a href="?page={{ posts.previous_page_number }}">← Назад</a>
           </li>
         {% endif %}
         {% if posts.has_next %}
           <li>
-            <a href="?page={{ posts.next_page_number }}">Далі &raquo;</a>
+            <a href="?page={{ posts.next_page_number }}">Далі →</a>
           </li>
         {% endif %}
       </ul>

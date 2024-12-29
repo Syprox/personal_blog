@@ -3,29 +3,26 @@
 <html lang="uk">
   {% include 'blog/head.html' %}
 
-  <body>
-    <div class="information box" data-type="warning">Сайт у розробці. Ви бачите недостовірну, неправильну інфомацію.</div>
+  <body class="content-grid">
+    {% include 'blog/information.html' %}
 
-    <div class="header_wrapper">
-      {% include 'blog/header.html' %}
-    </div>
-    <div class="main_wrapper">
-      <main>
-        {% block page_content %}
+    {% include 'blog/header.html' %}
 
-        {% endblock %}
-        {% block image_upload %}
+    <main>
+      {% block page_content %}
 
-        {% endblock %}
+      {% endblock %}
+      {% block image_upload %}
 
-        {% block pagination %}
+      {% endblock %}
 
-        {% endblock %}
-      </main>
-    </div>
-    <div class="footer_wrapper">
-      {% include 'blog/footer.html' %}
-    </div>
+      {% block pagination %}
+
+      {% endblock %}
+    </main>
+
+    {% include 'blog/footer.html' %}
+
     <script src="{% static 'js/main-script.js' %}"></script>
   </body>
 </html>

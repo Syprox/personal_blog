@@ -8,8 +8,11 @@
   --fs-4: clamp(1.2962rem, 1.1953rem + 0.5044vw, 2.0023rem);
   --fs-5: clamp(1.383rem, 1.2588rem + 0.6211vw, 2.2525rem);
   --color: red;
-  --mix: hsl(0, 0%, 0%);
-  --contrast: color-mix(in lab, currentColor 15%, var(--mix) 85%);
+  --mix: hsl(0, 0%, 100%);
+  --contrast: color-mix(in lab, currentColor 10%, var(--mix) 80%);
+  --border-color: color-mix(in lab, currentColor 65%, white 30%);
+  --grid-row-gap: 0;
+  --grid-column-gap: 1rem;
 }
 
 *,
@@ -33,27 +36,78 @@ body {
   line-height: 1.25;
   min-height: 100vh;
   display: grid;
-  grid: "information" auto "header" auto "main" 1fr "footer" auto/1fr;
-  row-gap: 0;
-  -moz-column-gap: 1em;
-       column-gap: 1em;
+  grid-template-rows: [info-start] auto [info-end header-start] auto [header-end main-start] 1fr [main-end footer-start] auto [footer-end];
+  row-gap: var(--grid-row-gap);
   background-color: hsl(240, 20%, 98%);
 }
 
+.content-grid,
+.full-width {
+  --padding-inline: 2rem;
+  --content-max-width: 56rem;
+  --wider-block-max-width: 70rem;
+  --wider-block-size: calc(
+    (var(--wider-block-max-width) - var(--content-max-width)) / 2
+  );
+  display: grid;
+  grid-template-columns: [full-width-start] minmax(var(--padding-inline), 1fr) [wider-block-start] minmax(0, var(--wider-block-size)) [content-start] min(100% - var(--padding-inline) * 2, var(--content-max-width)) [content-end] minmax(0, var(--wider-block-size)) [wider-block-end] minmax(var(--padding-inline), 1fr) [full-width-end];
+  -moz-column-gap: var(--grid-column-gap);
+       column-gap: var(--grid-column-gap);
+}
+
+.content-grid > :not(.wider-block, .full-width),
+.full-width > :not(.wider-block, .full-width) {
+  grid-column: content;
+}
+
+.content-grid > .wider-block {
+  grid-column: wider-block;
+}
+
+.content-grid > .full-width {
+  grid-column: full-width;
+}
+
 .information {
-  grid-area: information;
+  grid-row: info;
 }
 
 header {
-  grid-area: header;
+  grid-row: header;
 }
 
 main {
-  grid-area: main;
+  grid-row: main;
 }
 
 footer {
-  grid-area: footer;
+  grid-row: footer;
+}
+
+.box {
+  background: var(--contrast);
+  color: var(--color);
+  border: 1px solid var(--border-color);
+}
+
+.box[data-type=warning] {
+  --color: rgb(192, 35, 35);
+}
+
+.box[data-type=info] {
+  --color: blue;
+}
+
+.box[data-type=success] {
+  --color: green;
+}
+
+.box[data-type=error] {
+  --color: orangered;
+}
+
+.box[data-type=attention] {
+  --color: yellow;
 }
 
 .information {
@@ -63,22 +117,19 @@ footer {
   margin: 0.2em;
 }
 
-.header_wrapper {
-  padding: 1em 1.4em;
-  background-color: hsl(216, 5%, 18%);
-}
-
 header {
-  margin-inline: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: clamp(20em, 80%, 60em);
+  background-color: hsl(0, 0%, 20%);
+  padding: 0.6em 0;
 }
 header a {
   text-decoration: none;
   font-size: var(--fs--1);
   color: azure;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 header nav ul {
   display: flex;
@@ -89,31 +140,26 @@ header nav ul {
   /* @include root.pt-sans-narrow-regular; */
 }
 
-.main_wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1em;
-}
-
 main {
   display: flex;
-  gap: 1em;
-  width: clamp(20em, 98%, 46em);
+  gap: 2em;
 }
 main aside,
-main section,
-main .information {
-  padding: 0 1.4em;
+main section {
+  padding: 1em 0;
 }
 main aside {
-  width: clamp(10em, 20%, 16em);
+  width: clamp(10em, 30%, 30em);
 }
 main .categories_list ul {
   list-style: none;
 }
 main section {
   width: clamp(20em, 98%, 46em);
+}
+main section h2:nth-child(1),
+main aside h2:nth-child(1) {
+  margin-top: 0;
 }
 main h1 {
   font-size: var(--fs-5);
@@ -156,11 +202,18 @@ main p {
   line-height: 1.25;
 }
 
-.footer_wrapper {
-  padding: 0.6em;
+.pagination {
+  margin-top: 1.4em;
+}
+.pagination ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
 
 footer {
-  width: clamp(20em, 80%, 60em);
-  margin-inline: auto;
+  font-size: var(--fs--1);
+  padding-bottom: 1em;
 }/*# sourceMappingURL=main.css.map */

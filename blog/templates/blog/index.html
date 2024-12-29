@@ -4,18 +4,21 @@
 {% block page_content %}
   {% include 'blog/categories_list.html' %}
   <section class="posts_list">
-    <h2>Дописи у блозі</h2>
+    <div class="posts_list">
+      {% block page_title %}
+        <h2>Дописи у блозі</h2>
+      {% endblock %}
 
-    {% for post in posts %}
-      <h2><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h2>
-      <small>
-        {{ post.created_on.date }} | Розділ:{% for category in post.category.all %}
-          <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
-        {% endfor %}
-      </small>
-      <p>{{ post.content|slice:':300'|safe }}...</p>
-    {% endfor %}
-
+      {% for post in posts %}
+        <h2><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h2>
+        <small>
+          {{ post.created_on.date }} | Розділ:{% for category in post.category.all %}
+            <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
+          {% endfor %}
+        </small>
+        <p>{{ post.content|slice:':300'|safe }}...</p>
+      {% endfor %}
+    </div>
     {% include 'blog/pagination.html' %}
   </section>
 {% endblock %}
