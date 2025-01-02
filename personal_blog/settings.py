@@ -38,9 +38,12 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
 STATIC_ROOT  = BASE_DIR / 'staticfiles'
-
-MEDIA_ROOT = 'home/syprox20/media.syprox.pp.ua/'
-MEDIA_URL = 'https://media.syprox.pp.ua/'
+if DEBUG == 'False':
+    MEDIA_ROOT = 'home/syprox20/media.syprox.pp.ua/'
+    MEDIA_URL = 'https://media.syprox.pp.ua/'
+else:
+    MEDIA_ROOT = BASE_DIR / 'media'
+    MEDIA_URL = '/media/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -140,8 +143,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -156,17 +157,14 @@ TINYMCE_DEFAULT_CONFIG = {
     'custom_undo_redo_levels': 20,
     'relative_urls': False,
     'plugins':
-            'advlist textcolor save link image media preview codesample contextmenu\
+            ' advlist textcolor save link image media preview codesample contextmenu\
             table code lists fullscreen insertdatetime nonbreaking\
             contextmenu directionality searchreplace wordcount visualblocks\
             visualchars code fullscreen autolink lists charmap print hr\
             anchor pagebreak',
-    'toolbar1': 'fullscreen preview bold italic underline | fontselect,\
-            fontsizeselect  | forecolor backcolor | alignleft alignright \
-            aligncenter alignjustify | indent outdent | bullist numlist table |\
-            | link image media codesample |',
-    'toolbar2': 'visualblocks visualchars |\
-            charmap hr pagebreak nonbreaking anchor |  code |',
+    'toolbar1': ' blocks | bold italic underline strikethrough blockquote| bullist numlist table |\
+            | link image media codesample | charmap hr nonbreaking anchor |',
+    'toolbar2': 'fullscreen preview | visualblocks visualchars |   code | pastetext | removeformat visualaid|',
     'contextmenu': 'formats | link image',
     'menubar': True,
     'statusbar': True,
