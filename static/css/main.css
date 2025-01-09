@@ -1,3 +1,11 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "RuteniaDecor";
+  src: url("https://syprox.pp.ua/fonts/Lovely_Sofia_BG.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  credentials: "include";
+}
 :root {
   --fs--2: clamp(0.8784rem, 0.8627rem + 0.0781vw, 0.9877rem);
   --fs--1: clamp(0.9372rem, 0.9124rem + 0.1242vw, 1.1111rem);
@@ -7,12 +15,26 @@
   --fs-3: clamp(1.2148rem, 1.1341rem + 0.4036vw, 1.7798rem);
   --fs-4: clamp(1.2962rem, 1.1953rem + 0.5044vw, 2.0023rem);
   --fs-5: clamp(1.383rem, 1.2588rem + 0.6211vw, 2.2525rem);
-  --color: red;
-  --mix: hsl(0, 0%, 100%);
-  --contrast: color-mix(in lab, currentColor 10%, var(--mix) 80%);
-  --border-color: color-mix(in lab, currentColor 65%, white 30%);
   --grid-row-gap: 0;
   --grid-column-gap: 1rem;
+}
+
+.dark-theme {
+  --clr-bg: hsl(0, 0%, 15%);
+  --clr-text: hsl(0, 0%, 90%);
+  --clr-header-bg: hsl(0, 0%, 10%);
+  --clr-header-text: hsl(0, 0%, 90%);
+  --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
+  --border-color: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
+}
+
+.light-theme {
+  --clr-bg: hsl(0, 0%, 100%);
+  --clr-text: hsl(0, 0%, 10%);
+  --clr-header-bg: hsl(0, 0%, 90%);
+  --clr-header-text: hsl(0, 0%, 10%);
+  --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
+  --border-color: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
 }
 
 *,
@@ -26,6 +48,7 @@
 html {
   font-size: 16px;
   min-height: 100vh;
+  color-scheme: light dark;
 }
 
 body {
@@ -38,14 +61,15 @@ body {
   display: grid;
   grid-template-rows: [info-start] auto [info-end header-start] auto [header-end main-start] 1fr [main-end footer-start] auto [footer-end];
   row-gap: var(--grid-row-gap);
-  background-color: hsl(240, 20%, 98%);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
 }
 
 .content-grid,
 .full-width {
-  --padding-inline: 2rem;
-  --content-max-width: 56rem;
-  --wider-block-max-width: 70rem;
+  --padding-inline: 1rem;
+  --content-max-width: 60rem;
+  --wider-block-max-width: 80rem;
   --wider-block-size: calc(
     (var(--wider-block-max-width) - var(--content-max-width)) / 2
   );
@@ -91,15 +115,15 @@ footer {
 }
 
 .box[data-type=warning] {
-  --color: rgb(192, 35, 35);
+  --color: rgb(224, 89, 89);
 }
 
 .box[data-type=info] {
-  --color: blue;
+  --color: rgb(26, 26, 118);
 }
 
 .box[data-type=success] {
-  --color: green;
+  --color: rgb(9, 74, 9);
 }
 
 .box[data-type=error] {
@@ -107,7 +131,7 @@ footer {
 }
 
 .box[data-type=attention] {
-  --color: yellow;
+  --color: rgb(218, 193, 0);
 }
 
 .information {
@@ -118,13 +142,13 @@ footer {
 }
 
 header {
-  background-color: hsl(0, 0%, 20%);
+  background-color: var(--clr-header-bg);
   padding: 0.6em 0;
 }
 header a {
   text-decoration: none;
   font-size: var(--fs--1);
-  color: azure;
+  color: var(--clr-header-text);
 }
 header nav {
   display: flex;
@@ -139,17 +163,59 @@ header nav ul {
   justify-content: center;
   /* @include root.pt-sans-narrow-regular; */
 }
+header nav ul li img {
+  width: 1.5em;
+  height: 1.5em;
+}
+header #theme-toggle {
+  cursor: pointer;
+}
 
 main {
   display: flex;
   gap: 2em;
+  margin-top: 1rem;
 }
 main aside,
 main section {
-  padding: 1em 0;
+  padding: 0;
 }
 main aside {
   width: clamp(10em, 30%, 30em);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-family: "PT Sans Narrow", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+main aside h2 {
+  margin: 0;
+  color: var(--clr-bg);
+  background-color: color-mix(in lab, currentcolor 10%, var(--clr-text) 90%);
+  padding: 0.3em 0.2em;
+  margin-bottom: 0.1rem;
+  font-size: var(--fs-2);
+}
+main aside h2::before {
+  content: "⁝";
+  padding: 0.3em;
+}
+main aside a {
+  background-color: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
+  color: var(--clr-text);
+  text-decoration: none;
+  padding: 0.5em 0.5em 0.5em 1.4em;
+  margin: 0.1em 0;
+}
+main aside a:hover {
+  background-color: var(--clr-header-bg);
+}
+main aside a:last-child {
+  padding-bottom: 0.8em;
+  margin-bottom: 0;
 }
 main .categories_list ul {
   list-style: none;
@@ -191,14 +257,14 @@ main h3,
 main h4,
 main h5,
 main h6 {
-  color: #333333;
+  color: var(--clr-text);
 }
 main p {
   font-size: var(--fs-0);
   text-indent: 2em;
   text-align: justify;
   margin: 0.4em 0;
-  color: #1a1a1a;
+  color: var(--clr-text);
   line-height: 1.25;
 }
 

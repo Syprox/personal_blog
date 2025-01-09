@@ -11,6 +11,8 @@ def page_detail(request, slug):
 
 def blog_index(request, slug=None):
     category = False
+    if 'user_theme' not in request.session:
+        request.session['user_theme'] = 'light'
     
     if slug is not None:
         posts = Post.objects.filter(category__slug__icontains=slug, status=1).order_by("-created_on")
@@ -20,13 +22,14 @@ def blog_index(request, slug=None):
         
     categories = Category.objects.get_queryset().order_by('name')
 
-    posts_on_page = 2
+    posts_on_page = 5
     page_number = request.GET.get('page')
 
     context = {'page': page_number,
                'category': category,
                'categories': categories,
                'posts': get_posts_list(posts, page_number, posts_on_page),
+                'user_theme': request.session['user_theme'],
                }
 
     return render(request,

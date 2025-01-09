@@ -1,3 +1,5 @@
+{% load static %}
+
 <header class="full-width" aria-label="Page header conatiner">
   <nav aria-label="Pages list">
     <div id="logo">
@@ -12,6 +14,9 @@
       </li>
       <li>
         <a href="{% url 'page_detail' 'contacts' %}">Контакти</a>
+      </li>
+      <li>
+        <img src="{% static 'img/sun_icon.svg' %}" alt="" id='theme_toggle_btn'/>
       </li>
     </ul>
   </nav>

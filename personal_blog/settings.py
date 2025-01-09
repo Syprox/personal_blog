@@ -163,8 +163,8 @@ TINYMCE_DEFAULT_CONFIG = {
             visualchars code fullscreen autolink lists charmap print hr\
             anchor pagebreak',
     'toolbar1': ' blocks | bold italic underline strikethrough blockquote| bullist numlist table |\
-            | link image media codesample | charmap hr nonbreaking anchor |',
-    'toolbar2': 'fullscreen preview | visualblocks visualchars |   code | pastetext | removeformat visualaid|',
+            | link image media codesample | charmap hr nonbreaking anchor | ',
+    'toolbar2': 'fullscreen preview | visualblocks visualchars | code | pastetext | removeformat |',
     'contextmenu': 'formats | link image',
     'menubar': True,
     'statusbar': True,

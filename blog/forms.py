@@ -26,3 +26,8 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ('title', 'slug', 'image')
+
+class ThemeToogleBtn(forms.Form):
+    theme = forms.CharField(
+        widget=forms.HiddenInput()
+    )
