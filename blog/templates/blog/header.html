@@ -15,12 +15,16 @@
       <li>
         <a href="{% url 'page_detail' 'contacts' %}">Контакти</a>
       </li>
-      <li>
-        <form action="{% url 'theme_toggle' %}" method="post">
-          {% csrf_token %}
-          <button type="submit" id="theme_toggle_btn" aria-label="Switch theme"><img src="{% static 'img/sun_icon.svg' %}" alt="" id="theme_toggle_btn" /></button>
-        </form>
-      </li>
     </ul>
+    <form action="{% url 'theme_toggle' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" id="theme_toggle_btn" aria-label="Switch theme">
+        {% if request.session.theme == 'light' %}
+          <img src="{% static 'img/moon_icon.svg' %}" alt="Перемкнути на темну тему" title="Перемкнути на темну тему" />
+        {% else %}
+          <img src="{% static 'img/sun_icon.svg' %}" alt="Перемкнути на світлу тему" title="Перемкнути на світлу тему" />
+        {% endif %}
+      </button>
+    </form>
   </nav>
 </header>

@@ -3,6 +3,7 @@ from blog.models import *
 from django.http import HttpResponseRedirect
 from blog.forms import CommentForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .forms import *
 from . import forms as f
 from django.shortcuts import redirect
 

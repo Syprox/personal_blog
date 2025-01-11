@@ -40,6 +40,19 @@ body {
   color: var(--clr-text);
 }
 
+a {
+  text-decoration: none;
+}
+
+a,
+a:visited {
+  color: color-mix(in lab, var(--clr-link) 60%, var(--clr-text) 40%);
+}
+
+a:hover {
+  color: color-mix(in lab, var(--clr-link) 80%, var(--clr-text) 20%);
+}
+
 .content-grid,
 .full-width {
   --padding-inline: 1rem;
@@ -120,6 +133,9 @@ header {
   background-color: var(--clr-header-bg);
   padding: 0.6em 0;
 }
+header #logo {
+  flex: 1;
+}
 header a {
   text-decoration: none;
   font-size: var(--fs--1);
@@ -127,8 +143,9 @@ header a {
 }
 header nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  gap: 1em;
 }
 header nav ul {
   display: flex;
@@ -136,11 +153,17 @@ header nav ul {
   list-style: none;
   align-items: center;
   justify-content: center;
-  /* @include root.pt-sans-narrow-regular; */
 }
-header nav ul li img {
-  width: 1.5em;
+header nav #theme_toggle_btn {
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+header nav img {
   height: 1.5em;
+  width: 1.5em;
 }
 header #theme-toggle {
   cursor: pointer;
@@ -186,7 +209,7 @@ main aside a {
   margin: 1px 0;
 }
 main aside a:hover, main aside a:focus, main aside a:active {
-  background-color: var(--clr-header-bg);
+  background-color: color-mix(in lab, currentcolor 13%, var(--clr-header-bg) 87%);
 }
 main aside a:last-child {
   padding-bottom: 0.7em;

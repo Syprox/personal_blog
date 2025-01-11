@@ -1,7 +1,7 @@
 # blog/forms.py
 
 from django import forms
-from .models import Image, Post, Comment, Page
+from .models import *
 from tinymce.widgets import TinyMCE
 
 class TinyMCEWidget(TinyMCE):
