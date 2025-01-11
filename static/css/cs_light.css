@@ -1,1 +1,8 @@
-/*# sourceMappingURL=cs_light.css.map */
+:root {
+  --clr-bg: hsl(0, 0%, 100%);
+  --clr-text: hsl(0, 0%, 10%);
+  --clr-header-bg: hsl(0, 0%, 90%);
+  --clr-header-text: hsl(0, 0%, 10%);
+  --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
+  --border-color: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
+}/*# sourceMappingURL=cs_light.css.map */

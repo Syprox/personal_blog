@@ -1,18 +1,18 @@
 from django.shortcuts import render
-from blog.models import Post, Comment, Page, Category
+from blog.models import *
 from django.http import HttpResponseRedirect
 from blog.forms import CommentForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .forms import ImageForm
+from . import forms as f
+from django.shortcuts import redirect
 
 def page_detail(request, slug):
     page = Page.objects.get(slug=slug)
     return render(request, 'blog/page.html', {'page': page})
 
 def blog_index(request, slug=None):
+    
     category = False
-    if 'user_theme' not in request.session:
-        request.session['user_theme'] = 'light'
     
     if slug is not None:
         posts = Post.objects.filter(category__slug__icontains=slug, status=1).order_by("-created_on")
@@ -22,16 +22,14 @@ def blog_index(request, slug=None):
         
     categories = Category.objects.get_queryset().order_by('name')
 
-    posts_on_page = 5
+    posts_on_page = 3
     page_number = request.GET.get('page')
 
     context = {'page': page_number,
-               'category': category,
-               'categories': categories,
-               'posts': get_posts_list(posts, page_number, posts_on_page),
-                'user_theme': request.session['user_theme'],
-               }
-
+                'category': category,
+                'categories': categories,
+                'posts': get_posts_list(posts, page_number, posts_on_page),
+                }
     return render(request,
                   'blog/index.html',
                   context)
@@ -91,3 +89,11 @@ def image_upload_view(request):
     else:
         form = ImageForm()
         return render(request, 'blog/image_upload.html', {'form': form})
+    
+def theme_toggle(request):
+    if 'theme' in request.session and request.session['theme'] == 'light':
+        request.session['theme'] = 'dark' if request.session['theme'] == 'light' else 'light'
+    else:
+        request.session['theme'] = 'light'
+    
+    return redirect(request.META.get('HTTP_REFERER', '/'))

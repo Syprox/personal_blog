@@ -20,6 +20,11 @@
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Sans+Narrow:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  {% if request.session.theme == 'light' %}
+    <link rel="stylesheet" href="{% static 'css/cs_light.css' %}" />
+  {% else %}
+    <link rel="stylesheet" href="{% static 'css/cs_dark.css' %}" />
+  {% endif %}
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNKBC2K282"></script>

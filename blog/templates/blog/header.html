@@ -16,7 +16,10 @@
         <a href="{% url 'page_detail' 'contacts' %}">Контакти</a>
       </li>
       <li>
-        <img src="{% static 'img/sun_icon.svg' %}" alt="" id='theme_toggle_btn'/>
+        <form action="{% url 'theme_toggle' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" id="theme_toggle_btn" aria-label="Switch theme"><img src="{% static 'img/sun_icon.svg' %}" alt="" id="theme_toggle_btn" /></button>
+        </form>
       </li>
     </ul>
   </nav>

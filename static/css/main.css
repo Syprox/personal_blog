@@ -1,11 +1,4 @@
 @charset "UTF-8";
-@font-face {
-  font-family: "RuteniaDecor";
-  src: url("https://syprox.pp.ua/fonts/Lovely_Sofia_BG.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  credentials: "include";
-}
 :root {
   --fs--2: clamp(0.8784rem, 0.8627rem + 0.0781vw, 0.9877rem);
   --fs--1: clamp(0.9372rem, 0.9124rem + 0.1242vw, 1.1111rem);
@@ -17,24 +10,6 @@
   --fs-5: clamp(1.383rem, 1.2588rem + 0.6211vw, 2.2525rem);
   --grid-row-gap: 0;
   --grid-column-gap: 1rem;
-}
-
-.dark-theme {
-  --clr-bg: hsl(0, 0%, 15%);
-  --clr-text: hsl(0, 0%, 90%);
-  --clr-header-bg: hsl(0, 0%, 10%);
-  --clr-header-text: hsl(0, 0%, 90%);
-  --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
-  --border-color: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
-}
-
-.light-theme {
-  --clr-bg: hsl(0, 0%, 100%);
-  --clr-text: hsl(0, 0%, 10%);
-  --clr-header-bg: hsl(0, 0%, 90%);
-  --clr-header-text: hsl(0, 0%, 10%);
-  --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
-  --border-color: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
 }
 
 *,
@@ -194,7 +169,7 @@ main aside {
 main aside h2 {
   margin: 0;
   color: var(--clr-bg);
-  background-color: color-mix(in lab, currentcolor 10%, var(--clr-text) 90%);
+  background-color: color-mix(in lab, currentcolor 30%, var(--clr-text) 70%);
   padding: 0.3em 0.2em;
   margin-bottom: 0.1rem;
   font-size: var(--fs-2);
@@ -207,14 +182,14 @@ main aside a {
   background-color: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
   color: var(--clr-text);
   text-decoration: none;
-  padding: 0.5em 0.5em 0.5em 1.4em;
-  margin: 0.1em 0;
+  padding: 0.4em 0.5em 0.5em 1.4em;
+  margin: 1px 0;
 }
-main aside a:hover {
+main aside a:hover, main aside a:focus, main aside a:active {
   background-color: var(--clr-header-bg);
 }
 main aside a:last-child {
-  padding-bottom: 0.8em;
+  padding-bottom: 0.7em;
   margin-bottom: 0;
 }
 main .categories_list ul {
