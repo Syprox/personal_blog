@@ -12,7 +12,7 @@
     var(--clr-link-base) 20%,
     var(--clr-text) 80%
   );
-  --clr-link-bg: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
+  --clr-link-bg: color-mix(in lab, currentcolor 5%, var(--clr-bg) 95%);
   --clr-linkhover-bg: color-mix(
     in lab,
     currentcolor 13%,

@@ -51,6 +51,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    'compressor',
     'tinymce',
     'django.contrib.sitemaps',
     'blog.apps.BlogConfig',

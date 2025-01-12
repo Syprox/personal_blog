@@ -1,4 +1,6 @@
 {% load static %}
+{% load compress %}
+
 <head>
   <meta charset="utf-8" />
   <title>
@@ -19,13 +21,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Sans+Narrow:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
 
+  {% compress css %}
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
   {% if request.session.theme == 'light' %}
     <link rel="stylesheet" href="{% static 'css/cs_light.css' %}" />
   {% else %}
     <link rel="stylesheet" href="{% static 'css/cs_dark.css' %}" />
   {% endif %}
-
+  {% endcompress %}
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNKBC2K282"></script>
 
