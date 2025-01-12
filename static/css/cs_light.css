@@ -5,7 +5,15 @@
   --clr-header-text: hsl(0, 0%, 10%);
   --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
   --border-color: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
-  --clr-link: hsl(96, 100%, 25%);
+  --clr-link-base: hsl(265, 68%, 47%);
+  --clr-link: color-mix(in lab, var(--clr-link-base) 90%, var(--clr-text) 5%);
+  --clr-linkhover: color-mix(
+    in lab,
+    var(--clr-link-base) 70%,
+    var(--clr-text) 30%
+  );
+  --clr-link-bg: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
+  --clr-linkhover-bg: color-mix(in lab, currentcolor 5%, var(--clr-bg) 95%);
 }
 
 html {
@@ -14,9 +22,16 @@ html {
 
 a,
 a:visited {
-  color: color-mix(in lab, var(--clr-link) 90%, var(--clr-text) 10%);
+  color: var(--clr-link);
 }
 
 a:hover {
-  color: color-mix(in lab, var(--clr-link) 60%, var(--clr-text) 40%);
+  color: var(--clr-linkhover);
+}
+
+main aside a {
+  background-color: var(--clr-link-bg);
+}
+main aside a:hover, main aside a:focus, main aside a:active {
+  background-color: var(--clr-linkhover-bg);
 }/*# sourceMappingURL=cs_light.css.map */

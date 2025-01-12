@@ -135,6 +135,28 @@ header {
 }
 header #logo {
   flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.1em;
+}
+header #logo svg {
+  height: 42px;
+}
+header #logo a {
+  font-size: 2.4em;
+  font-weight: 700;
+}
+header #logo .logoletters {
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+}
+header #logo .logoletters .desc {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-size: 0.6em;
+  line-height: 1;
 }
 header a {
   text-decoration: none;
@@ -160,8 +182,10 @@ header nav #theme_toggle_btn {
   margin: 0;
   padding: 0;
   cursor: pointer;
+  padding-block: 0;
+  padding-inline: 0;
 }
-header nav img {
+header nav #theme_toggle_btn img {
   height: 1.5em;
   width: 1.5em;
 }
@@ -172,7 +196,7 @@ header #theme-toggle {
 main {
   display: flex;
   gap: 2em;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 main aside,
 main section {
@@ -202,14 +226,8 @@ main aside h2::before {
   padding: 0.3em;
 }
 main aside a {
-  background-color: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
-  color: var(--clr-text);
-  text-decoration: none;
   padding: 0.4em 0.5em 0.5em 1.4em;
   margin: 1px 0;
-}
-main aside a:hover, main aside a:focus, main aside a:active {
-  background-color: color-mix(in lab, currentcolor 13%, var(--clr-header-bg) 87%);
 }
 main aside a:last-child {
   padding-bottom: 0.7em;
@@ -264,6 +282,16 @@ main p {
   margin: 0.4em 0;
   color: var(--clr-text);
   line-height: 1.25;
+}
+main #tags a {
+  border: 1px solid var(--clr-link);
+  padding: 0em 0.6em 0.05em;
+  border-radius: 0.6em;
+  background-color: var(--clr-link-bg);
+  opacity: 0.8;
+}
+main #tags a:hover {
+  background-color: var(--clr-linkhover-bg);
 }
 
 .pagination {

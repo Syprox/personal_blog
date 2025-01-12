@@ -1,11 +1,23 @@
 :root {
-  --clr-bg: hsl(0, 0%, 15%);
-  --clr-text: hsl(0, 0%, 90%);
+  --clr-bg: hsl(0, 0%, 13%);
+  --clr-text: hsl(0, 0%, 95%);
   --clr-header-bg: hsl(0, 0%, 10%);
-  --clr-header-text: hsl(0, 0%, 90%);
+  --clr-header-text: hsl(0, 0%, 100%);
   --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
   --border-color: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
-  --clr-link: hsl(96, 100%, 25%);
+  --clr-link-base: hsl(265, 100%, 35%);
+  --clr-link: color-mix(in lab, var(--clr-link-base) 50%, var(--clr-text) 50%);
+  --clr-linkhover: color-mix(
+    in lab,
+    var(--clr-link-base) 20%,
+    var(--clr-text) 80%
+  );
+  --clr-link-bg: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
+  --clr-linkhover-bg: color-mix(
+    in lab,
+    currentcolor 13%,
+    var(--clr-header-bg) 87%
+  );
 }
 
 html {
@@ -14,9 +26,16 @@ html {
 
 a,
 a:visited {
-  color: color-mix(in lab, var(--clr-link) 50%, var(--clr-text) 50%);
+  color: var(--clr-link);
 }
 
 a:hover {
-  color: color-mix(in lab, var(--clr-link) 30%, var(--clr-text) 70%);
+  color: var(--clr-linkhover);
+}
+
+main aside a {
+  background-color: var(--clr-link-bg);
+}
+main aside a:hover, main aside a:focus, main aside a:active {
+  background-color: var(--clr-linkhover-bg);
 }/*# sourceMappingURL=cs_dark.css.map */

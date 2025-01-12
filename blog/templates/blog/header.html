@@ -3,7 +3,22 @@
 <header class="full-width" aria-label="Page header conatiner">
   <nav aria-label="Pages list">
     <div id="logo">
-      <a href="{% url 'blog_index' %}"><h1>СВС</h1></a>
+      {% comment %} <img src="{% static 'img/logo3_icon.svg' %}" alt="" /> {% endcomment %}
+      <svg width="64" height="64" viewBox="0 0 64 64" version="1.1" id="svg1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+        <g id="triangle" transform="matrix(0.9335924,0,0,0.9335924,-627.4625,-292.55091)" style="stroke-width:1">
+          <path style="fill:none;stroke:#ff6600;stroke-width:10.7113;stroke-linecap:butt;stroke-opacity:1" d="m 706.3709,323.30817 h 25 l -12.5,21.65064" id="orangecorner" />
+          <path style="fill:none;stroke:#44aa00;stroke-width:10.7113;stroke-linecap:butt;stroke-opacity:1" d="m 693.8709,344.95881 -12.5,-21.65064 h 25" id="greencorner" />
+          <path style="fill:none;stroke:#9955ff;stroke-width:10.7113;stroke-linecap:butt;stroke-opacity:1" d="m 718.8709,344.95881 -12.5,21.65063 -12.5,-21.65063" id="violetcorner" />
+        </g>
+      </svg>
+      <div class="logoletters">
+        <a href="{% url 'blog_index' %}">СВС</a>
+        <small class="desc">
+          <span>Computer graphics</span>
+          <span>Batik</span>
+          <span>Color theory</span>
+        </small>
+      </div>
     </div>
     <ul>
       <li>
