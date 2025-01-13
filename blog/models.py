@@ -44,9 +44,9 @@ class Post(models.Model):
         return self.title
     
     def save(self, *args, **kwargs):
-        if not re.search(r'[a-zA-Z0-9_-]-\d{2}-\d{4}$', self.slug):
+        if not re.search(r'[a-zA-Z0-9_-][-_]\d{2}-\d{4}$', self.slug):
             suffix = self.created_on.strftime('%m') + '-' + self.created_on.strftime('%Y')
-            self.slug = slugify(self.slug) + "-" + suffix
+            self.slug = slugify(self.slug) + "_" + suffix
         super(Post, self).save(*args, **kwargs)
         
     

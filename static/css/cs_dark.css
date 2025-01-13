@@ -5,7 +5,7 @@
   --clr-header-bg: hsl(0, 0%, 10%);
   --clr-bg-opc: hsla(0, 0%, 13%, var(--opc-lvl));
   --clr-header-bg-opc: hsla(0, 0%, 10%, var(--opc-lvl));
-  --clr-text: hsl(0, 0%, 95%);
+  --clr-text: hsl(0, 0%, 90%);
   --clr-header-text: hsl(0, 0%, 100%);
   --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
   --clr-border: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
@@ -13,6 +13,11 @@
     in lab,
     var(--clr-link-base) 10%,
     var(--clr-black-opc) 90%
+  );
+  --clr-secondary-text: color-mix(
+    in lab,
+    var(--clr-text) 70%,
+    var(--clr-bg) 30%
   );
   --clr-link-base: hsl(265, 100%, 35%);
   --clr-link: color-mix(in lab, var(--clr-link-base) 50%, var(--clr-text) 50%);

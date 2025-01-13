@@ -8,13 +8,17 @@
       <button type="submit" class="btn">Зберегти</button>
     </form>
     {% if comments %}
-      <h3>Коментарі:</h3>
-      {% for comment in comments %}
-        <p>
-          {{ comment.created_on.date }} <b>{{ comment.author }}</b> написав(ла):
-        </p>
-        <p>{{ comment.message|safe }}</p>
-      {% endfor %}
+      <div class="comment_messages">
+        <h3>Коментарі:</h3>
+        {% for comment in comments %}
+          <div class="comment">
+            <p>
+              {{ comment.created_on.date }} <b>{{ comment.author }}</b> написав(ла):
+            </p>
+            <p>{{ comment.message|safe }}</p>
+          </div>
+        {% endfor %}
+      </div>
     {% endif %}
   </div>
 {% endblock %}

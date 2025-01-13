@@ -3,10 +3,9 @@
 {% block page_content %}
   {% include 'blog/categories_list.html' %}
   <section>
+    {% include 'blog/post_info.html' %}
     <article>
-      <h2>{{ post.title }}</h2>
-
-      {% include 'blog/post_info.html' %}
+      <h1>{{ post.title }}</h1>
 
       {{ post.content|safe }}
     </article>
