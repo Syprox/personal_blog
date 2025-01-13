@@ -5,13 +5,9 @@
   <section>
     <article>
       <h2>{{ post.title }}</h2>
-      <div class="post_info">
-        <small>
-          {{ post.created_on.date }} | Розділ:{% for category in post.category.all %}
-            <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
-          {% endfor %}
-        </small>
-      </div>
+
+      {% include 'blog/post_info.html' %}
+
       {{ post.content|safe }}
     </article>
     {% if post %}

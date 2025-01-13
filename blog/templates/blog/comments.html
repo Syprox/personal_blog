@@ -1,11 +1,11 @@
 {% block comments %}
   <div class="comments">
     <h3>Залиште коментар:</h3>
-    <form method="post">
+    <form method="post" class="comment_form">
       {% csrf_token %}
-      <div>{{ form.author }}</div>
-      <div>{{ form.message }}</div>
-      <button type="submit" class="btn btn-primary">Зберегти</button>
+      {{ form.author }}
+      {{ form.message }}
+      <button type="submit" class="btn">Зберегти</button>
     </form>
     {% if comments %}
       <h3>Коментарі:</h3>

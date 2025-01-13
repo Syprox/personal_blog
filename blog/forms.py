@@ -12,12 +12,12 @@ class CommentForm(forms.Form):
     author = forms.CharField(
         max_length=60,
         widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "Ваше ім'я"}
+            attrs={'required': True, "class": "comment_author", "placeholder": "Ваше ім'я"}
         ),
     )
     message = forms.CharField(
-        widget=TinyMCEWidget( 
-            attrs={'required': False, 'cols': 30, 'rows': 10, "placeholder": "Повідомлення"}
+        widget=forms.Textarea( 
+            attrs={'required': True, 'cols': 70, 'rows': 8,"class": "comment_message", "placeholder": "Повідомлення"}
         ) 
     )
 

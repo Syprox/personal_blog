@@ -44,7 +44,7 @@ class Post(models.Model):
         return self.title
     
     def save(self, *args, **kwargs):
-        if not re.search(r'-\d{2}-\d{4}$', self.slug) or self.created_on.date() != timezone.now().date():
+        if not re.search(r'[a-zA-Z0-9_-]-\d{2}-\d{4}$', self.slug):
             suffix = self.created_on.strftime('%m') + '-' + self.created_on.strftime('%Y')
             self.slug = slugify(self.slug) + "-" + suffix
         super(Post, self).save(*args, **kwargs)
@@ -73,7 +73,7 @@ class Page(models.Model):
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
     author = models.CharField(max_length=60, verbose_name="Автор")
-    message = HTMLField(verbose_name="Повідомлення")
+    message = models.TextField(max_length=300, verbose_name="Повідомлення")
     created_on = models.DateTimeField(auto_now_add=True, verbose_name="Дата створення коментаря")
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments', verbose_name="Допис")
 

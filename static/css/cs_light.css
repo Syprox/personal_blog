@@ -1,10 +1,19 @@
 :root {
+  --opc-lvl: 0.65;
+  --clr-black-opc: hsla(0, 0%, 0%, 0.1);
   --clr-bg: hsl(0, 0%, 100%);
-  --clr-text: hsl(0, 0%, 10%);
   --clr-header-bg: hsl(0, 0%, 90%);
+  --clr-bg-opc: hsla(0, 0%, 100%, var(--opc-lvl));
+  --clr-header-bg-opc: hsla(0, 0%, 90%, var(--opc-lvl));
+  --clr-text: hsl(0, 0%, 10%);
   --clr-header-text: hsl(0, 0%, 10%);
   --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
-  --border-color: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
+  --clr-border: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
+  --clr-shadow: color-mix(
+    in lab,
+    var(--clr-link) 10%,
+    var(--clr-black-opc) 90%
+  );
   --clr-link-base: hsl(265, 68%, 47%);
   --clr-link: color-mix(in lab, var(--clr-link-base) 90%, var(--clr-text) 5%);
   --clr-linkhover: color-mix(

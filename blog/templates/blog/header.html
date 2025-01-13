@@ -1,7 +1,7 @@
 {% load static %}
 
-<header class="full-width" aria-label="Page header conatiner">
-  <nav aria-label="Pages list">
+<header class="full-width" aria-label="Site header conatiner">
+  <div class="wrapper">
     <div id="logo">
       <a href="{% url 'blog_index' %}" title="На головну сторінку"><img src="{% static 'img/logo3_icon.svg' %}" alt="" /></a>
       <div class="logoletters">
@@ -13,17 +13,13 @@
         </small>
       </div>
     </div>
-    <ul>
-      <li>
-        <a href="{% url 'blog_index' %}">Головна</a>
-      </li>
-      <li>
-        <a href="{% url 'page_detail' 'about_me' %}">Про мене</a>
-      </li>
-      <li>
-        <a href="{% url 'page_detail' 'contacts' %}">Контакти</a>
-      </li>
-    </ul>
+    <nav aria-label="Pages list">
+      <a href="{% url 'blog_index' %}">Головна</a>
+
+      <a href="{% url 'page_detail' 'about_me' %}">Про мене</a>
+
+      <a href="{% url 'page_detail' 'contacts' %}">Контакти</a>
+    </nav>
     <form action="{% url 'theme_toggle' %}" method="post">
       {% csrf_token %}
       <button type="submit" id="theme_toggle_btn" aria-label="Switch theme">
@@ -34,5 +30,5 @@
         {% endif %}
       </button>
     </form>
-  </nav>
+  </div>
 </header>

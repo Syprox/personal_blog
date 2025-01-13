@@ -1,0 +1,10 @@
+<div class="post_info">
+  <small>
+    <span class="created" title="Опубліковано">{{ post.created_on.date }}</span> <span class="splitter">|</span> <span class="updated" title="Востаннє змінено">{{ post.updated_on.date }}</span><br />
+    <span>
+      Розділ:{% for category in post.category.all %}
+        <a href="{% url 'blog_category' category.slug %}" class="tag">{{ category.name }}</a>
+      {% endfor %}
+    </span>
+  </small>
+</div>

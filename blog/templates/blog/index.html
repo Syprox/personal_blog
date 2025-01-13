@@ -4,19 +4,17 @@
   <section class="posts_list">
     <div class="posts_list">
       {% if category %}
-        <span>Дописи у розділі</span><h2>«{{ category }}»</h2>
+        <span>Дописи у розділі</span><h1>«{{ category }}»</h1>
       {% else %}
-        <h2>Дописи у часописі</h2>
+        <h1>Усі дописи</h1>
       {% endif %}
 
       {% for post in posts %}
         <h2><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h2>
-        <small id="tags">
-          {{ post.created_on.date }} | Розділ:{% for category in post.category.all %}
-            <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
-          {% endfor %}
-        </small>
-        <p>{{ post.content|slice:':300'|safe }}...</p>
+
+        {% include 'blog/post_info.html' %}
+
+        <p>{{ post.content|slice:':200'|safe }}...</p>
       {% endfor %}
     </div>
     {% include 'blog/pagination.html' %}
