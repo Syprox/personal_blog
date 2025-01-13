@@ -155,8 +155,10 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': 720,
     'width': 1200,
     'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 20,
+    'custom_undo_redo_levels': 50,
     'relative_urls': False,
+    "entity_encoding": "raw",
+    "quickbars_insert_toolbar": False,
     'plugins':
             ' advlist textcolor save link image media preview codesample contextmenu\
             table code lists fullscreen insertdatetime nonbreaking\
@@ -169,5 +171,30 @@ TINYMCE_DEFAULT_CONFIG = {
     'contextmenu': 'formats | link image',
     'menubar': True,
     'statusbar': True,
-    
+    "file_picker_callback": """function (cb, value, meta) {
+        var input = document.createElement("input");
+        input.setAttribute("type", "file");
+        if (meta.filetype == "image") {
+            input.setAttribute("accept", "image/*");
+        }
+        if (meta.filetype == "media") {
+            input.setAttribute("accept", "video/*");
+        }
+
+        input.onchange = function () {
+            var file = this.files[0];
+            var reader = new FileReader();
+            reader.onload = function () {
+                var id = "blobid" + (new Date()).getTime();
+                var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                var base64 = reader.result.split(",")[1];
+                var blobInfo = blobCache.create(id, file, base64);
+                blobCache.add(blobInfo);
+                cb(blobInfo.blobUri(), { title: file.name });
+            };
+            reader.readAsDataURL(file);
+        };
+        input.click();
+    }""",
+    "content_style": "body { font-family:'PT Sans',sans-serif; font-size:16px }",
     }
