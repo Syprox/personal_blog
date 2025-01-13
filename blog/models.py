@@ -14,7 +14,7 @@ STATUS = (
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30, verbose_name="Назва")
-    slug = models.SlugField(max_length=30, unique=True, verbose_name="Посилання")
+    slug = models.SlugField(max_length=38, unique=True, verbose_name="Посилання")
 
     class Meta:
         verbose_name_plural = "Розділи"
@@ -24,8 +24,8 @@ class Category(models.Model):
 
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200, unique=False, verbose_name="Назва")
-    slug = models.SlugField(max_length=40, unique=True, verbose_name="Посилання")
+    title = models.CharField(max_length=100, unique=False, verbose_name="Назва")
+    slug = models.SlugField(max_length=108, unique=True, verbose_name="Посилання")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author',  verbose_name="Автор")
     content = HTMLField(verbose_name="Вміст допису")
     created_on = models.DateTimeField(default=timezone.now, verbose_name="Дата створення допису", editable=True)
@@ -52,8 +52,8 @@ class Post(models.Model):
     
 class Page(models.Model):
     page_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200, unique=False, verbose_name="Назва")
-    slug = models.SlugField(max_length=40, unique=True, verbose_name="Посилання")
+    title = models.CharField(max_length=100, unique=False, verbose_name="Назва")
+    slug = models.SlugField(max_length=108, unique=True, verbose_name="Посилання")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_page', verbose_name="Автор")
     content =  HTMLField(verbose_name="Вміст сторінки")
     created_on = models.DateTimeField(auto_now_add=True, verbose_name="Дата створення сторінки")
@@ -85,8 +85,8 @@ class Comment(models.Model):
         return f"{self.author} прокоментував '{self.post}'"
     
 class Image(models.Model):
-    title = models.CharField(max_length=200, verbose_name="Назва")
-    slug = models.SlugField(max_length=40, unique=True, verbose_name="Посилання",editable=True)
+    title = models.CharField(max_length=100, verbose_name="Назва")
+    slug = models.SlugField(max_length=108, unique=True, verbose_name="Посилання",editable=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True, verbose_name="Дата створення зображення")
     category = models.ManyToManyField(Category, related_name='category_image', verbose_name="Розділ")
     image = models.ImageField(upload_to='images', verbose_name="Зображення")
