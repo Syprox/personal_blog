@@ -1,5 +1,6 @@
 Django
-django_summernote
+django_tinymce
 whitenoise
 mysqlclient
 Pillow
+django-compressor

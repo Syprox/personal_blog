@@ -108,7 +108,7 @@ class ImageDB (models.Model):
     source = models.TextField(max_length=500, null=True)
 
     def __str__(self):
-        return f"{self.title} → {self.gd_id}"
+        return f"{self.title}: {self.gd_id}"
     
     class Meta:
         ordering = ['-added_on']

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Category, Comment, Post, Page, Image
+from blog.models import *
 
 class CategoryAdmin(admin.ModelAdmin):
     pass
@@ -23,6 +23,10 @@ class ImageAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     pass
 
+class ImageDBAdmin(admin.ModelAdmin):
+    list_display = ('title', 'gd_id', 'added_on')
+    search_fields = ['title', 'gd_id']
+
 admin.site.register(Category, CategoryAdmin)
 """  """
 admin.site.register(Post, PostAdmin)
@@ -32,4 +36,6 @@ admin.site.register(Comment, CommentAdmin)
 admin.site.register(Page, PageAdmin)
 """  """
 admin.site.register(Image, ImageAdmin)
+"""  """
+admin.site.register(ImageDB, ImageDBAdmin)
 """  """
