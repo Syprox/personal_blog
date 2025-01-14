@@ -1,13 +1,5 @@
 @charset "UTF-8";
 :root {
-  /*   --fs--2: clamp(0.8784rem, 0.8627rem + 0.0781vw, 0.9877rem);
-  --fs--1: clamp(0.9372rem, 0.9124rem + 0.1242vw, 1.1111rem);
-  --fs-0: clamp(1rem, 0.9643rem + 0.1786vw, 1.25rem);
-  --fs-1: clamp(1.067rem, 1.0185rem + 0.2423vw, 1.4063rem);
-  --fs-2: clamp(1.1385rem, 1.0751rem + 0.3168vw, 1.582rem);
-  --fs-3: clamp(1.2148rem, 1.1341rem + 0.4036vw, 1.7798rem);
-  --fs-4: clamp(1.2962rem, 1.1953rem + 0.5044vw, 2.0023rem);
-  --fs-5: clamp(1.383rem, 1.2588rem + 0.6211vw, 2.2525rem); */
   --fs--3: clamp(0.651rem, 0.6186rem + 0.1621vw, 0.8779rem);
   --fs--2: clamp(0.7813rem, 0.7518rem + 0.1474vw, 0.9877rem);
   --fs--1: clamp(0.9375rem, 0.9127rem + 0.124vw, 1.1111rem);
@@ -18,7 +10,7 @@
   --fs-4: clamp(2.0023rem, 2.38rem + -0.2361vw, 2.3328rem);
   --fs-5: clamp(2.2525rem, 2.8775rem + -0.3906vw, 2.7994rem);
   --fs-6: clamp(2.5341rem, 3.4771rem + -0.5894vw, 3.3592rem);
-  --line-height: var(--fs-2);
+  --line-height: 1.4;
   --grid-row-gap: 0;
   --grid-column-gap: 1rem;
   --br: 0.4rem;
@@ -51,7 +43,6 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: var(--fs-0);
-  line-height: var(--line-height);
   min-height: 100vh;
   display: grid;
   grid-template-rows: [info-start] auto [info-end header-start] auto [header-end main-start] 1fr [main-end footer-start] auto [footer-end];
@@ -307,7 +298,7 @@ main .post_info {
   font-size: var(--fs-0);
   line-height: var(--fs-1);
   color: var(--clr-secondary-text);
-  padding: 0em 0 1em;
+  padding: 1em 0;
 }
 main .post_info .created::before {
   content: "📆";
@@ -341,6 +332,7 @@ main .comment_form .comment_message {
   font-style: normal;
   font-size: var(--fs--1);
   display: block;
+  background-color: var(--clr-header-bg);
   border: 1px solid var(--clr-border);
   border-radius: var(--br);
   outline: 0;
@@ -350,14 +342,34 @@ main .comment_form .comment_message {
 main .comment_form .comment_message {
   border-bottom-right-radius: 0.4em;
 }
+main .comment_messages .comment {
+  border: 1px solid var(--clr-secondary-text);
+  border-radius: var(--br);
+  padding: 0.6em 1em;
+}
+main .comment_messages .comment .author_name::before {
+  content: "👤";
+  margin-right: 0.4em;
+}
+main .comment_messages .comment .message_text::before {
+  content: "💬";
+  margin-right: 0.4em;
+}
 main .btn {
-  padding: 0.6em 2em;
+  padding: 0.4em 1.6em;
   max-width: -moz-fit-content;
   max-width: fit-content;
   border-radius: var(--br);
   outline: 0;
   border: 1px solid var(--clr-border);
+  background-color: var(--clr-secondary-text);
+  color: var(--clr-bg);
   cursor: pointer;
+  font-family: "PT Sans", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--fs--2);
+  font-weight: 400;
 }
 
 .pagination {

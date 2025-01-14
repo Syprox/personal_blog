@@ -12,10 +12,11 @@
         <h3>Коментарі:</h3>
         {% for comment in comments %}
           <div class="comment">
+            <small>{{ comment.created_on.date }}</small>
             <p>
-              {{ comment.created_on.date }} <b>{{ comment.author }}</b> написав(ла):
+              <b class="author_name">{{ comment.author }}</b>:
             </p>
-            <p>{{ comment.message|safe }}</p>
+            <p class="message_text">{{ comment.message|safe }}</p>
           </div>
         {% endfor %}
       </div>
