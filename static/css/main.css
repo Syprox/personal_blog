@@ -298,7 +298,7 @@ main .post_info {
   font-size: var(--fs-0);
   line-height: var(--fs-1);
   color: var(--clr-secondary-text);
-  padding: 1em 0;
+  padding: 0 0 1em;
 }
 main .post_info .created::before {
   content: "📆";
