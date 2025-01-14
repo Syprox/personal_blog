@@ -4,17 +4,20 @@
   <section class="posts_list">
     <div class="posts_list">
       {% if category %}
-        <span>Дописи у розділі</span><h1>«{{ category }}»</h1>
+        <span>Дописи у розділі</span><h1>«{{ category }}»</h1><hr />
       {% else %}
         <h1>Усі дописи</h1>
+        <hr />
       {% endif %}
 
       {% for post in posts %}
-        <h2><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h2>
+        <div class="post_preview">
+          <h2><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h2>
 
-        {% include 'blog/post_info.html' %}
+          {% include 'blog/post_info.html' %}
 
-        <p>{{ post.content|slice:':200'|safe }}...</p>
+          <p>{{ post.content|slice:':200'|safe }}...</p>
+        </div>
       {% endfor %}
     </div>
     {% include 'blog/pagination.html' %}
