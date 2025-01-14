@@ -14,7 +14,7 @@
         <div class="post_preview">
           <h2><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h2>
           {% include 'blog/post_info.html' %}
-          <p>{{ post.content|slice:':200'|safe }}...</p>
+          <div class="content_preview">{{ post.content|slice:':400'|safe }}...</div>
         </div>
       {% endfor %}
     </div>

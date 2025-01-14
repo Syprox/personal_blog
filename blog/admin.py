@@ -9,6 +9,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ("status",)
     search_fields = ['title', 'content']
     prepopulated_fields = {"slug": ["title",]}
+    editable_list = ('slug',)
 
 
 class PageAdmin(admin.ModelAdmin):

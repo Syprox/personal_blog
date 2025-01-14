@@ -19,7 +19,7 @@
     var(--clr-text) 70%,
     var(--clr-bg) 30%
   );
-  --clr-link-base: hsl(265, 68%, 47%);
+  --clr-link-base: hsl(265, 67%, 33%);
   --clr-link: color-mix(in lab, var(--clr-link-base) 90%, var(--clr-text) 5%);
   --clr-linkhover: color-mix(
     in lab,
