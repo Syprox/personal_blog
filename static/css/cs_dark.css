@@ -1,11 +1,11 @@
 :root {
   --opc-lvl: 0.85;
   --clr-black-opc: hsla(0, 0%, 0%, 0.5);
-  --clr-bg: hsl(0, 0%, 13%);
+  --clr-bg: hsl(0, 0%, 13.3%);
   --clr-header-bg: hsl(0, 0%, 10%);
   --clr-bg-opc: hsla(0, 0%, 13%, var(--opc-lvl));
   --clr-header-bg-opc: hsla(0, 0%, 10%, var(--opc-lvl));
-  --clr-text: hsl(0, 0%, 90%);
+  --clr-text: hsl(0, 0%, 95%);
   --clr-header-text: hsl(0, 0%, 100%);
   --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
   --clr-border: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
