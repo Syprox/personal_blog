@@ -16,7 +16,7 @@
   --img-margin: 1.4em;
   --br: 0.4rem;
   --padding-inline: 1rem;
-  --content-max-width: 60rem;
+  --content-max-width: 66rem;
   --content-min-width: 40rem;
   --wider-block-max-width: 80rem;
   --wider-block-size: calc(
@@ -136,7 +136,7 @@ footer {
 }
 
 header {
-  background-color: var(--clr-header-bg-opc);
+  background-image: linear-gradient(to bottom, var(--clr-bg-opc) 0%, var(--clr-header-bg-opc) 15%, var(--clr-header-bg-opc) 65%, var(--clr-bg-opc));
   padding: 0.2em 0;
   box-shadow: 0px 3px 6px var(--clr-shadow);
   border: 1px solid var(--clr-bg);
@@ -291,11 +291,19 @@ main article,
 main .post_preview {
   margin-bottom: 2em;
 }
+main article ul,
+main article ol,
+main .post_preview ul,
+main .post_preview ol {
+  padding-left: 1.6em;
+}
 main article li,
 main .post_preview li {
-  list-style-position: inside;
-  padding-left: 1em;
   margin-bottom: 0.4em;
+}
+main article li:last-child,
+main .post_preview li:last-child {
+  margin-bottom: 1.4em;
 }
 main article p,
 main .post_preview p {
@@ -320,7 +328,6 @@ main .post_preview img:first-child {
 main p {
   font-size: var(--fs-0);
   text-indent: 1.2em;
-  text-align: justify;
   color: var(--clr-text);
   line-height: var(--line-height);
 }
