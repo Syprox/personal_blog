@@ -32,7 +32,10 @@ def blog_index(request, slug=None):
     for post in post_in_current_page:
         post.content = content_handler(post.content, True)
         pc = BeautifulSoup(post.content, 'html.parser')
-        first_image = pc.img.extract()
+        try:
+            first_image = pc.img.extract()
+        except:
+            first_image = "<p></p>"
         prev_images.append(first_image)
         post.content = pc.prettify(formatter="minimal")
         
