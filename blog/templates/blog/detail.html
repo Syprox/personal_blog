@@ -6,7 +6,7 @@
     <article>
       <h1>{{ post.title }}</h1>
       {% include 'blog/post_info.html' %}
-      {{ post.content|safe }}
+      {{ content|safe }}
     </article>
     {% if post %}
       {% include 'blog/comments.html' %}

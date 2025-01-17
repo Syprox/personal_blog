@@ -8,8 +8,7 @@
   --clr-text: hsl(0, 0%, 10%);
   --clr-header-text: hsl(0, 0%, 13%);
   --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
-  --clr-border: white;
-  --clr-box-border: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
+  --clr-border: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
   --clr-shadow: color-mix(
     in lab,
     var(--clr-link) 10%,

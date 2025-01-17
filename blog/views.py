@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import *
 from . import forms as f
 from django.shortcuts import redirect
+from bs4 import BeautifulSoup
 
 def page_detail(request, slug):
     page = Page.objects.get(slug=slug)
@@ -25,11 +26,15 @@ def blog_index(request, slug=None):
 
     posts_on_page = 3
     page_number = request.GET.get('page')
+    post_in_current_page = get_posts_list(posts, page_number, posts_on_page)
+
+    for post in post_in_current_page:
+        post.content = content_check(post.content)
 
     context = {'page': page_number,
                 'category': category,
                 'categories': categories,
-                'posts': get_posts_list(posts, page_number, posts_on_page),
+                'posts': post_in_current_page,
                 }
     return render(request,
                   'blog/index.html',
@@ -54,9 +59,12 @@ def blog_detail(request, slug):
             return HttpResponseRedirect(request.path_info)
     print("Вибраний допис: " + str(post.post_id))
     comments = Comment.objects.filter(post=post)
-    
+
+    content = content_check(post.content)
+
     context = {
         "post": post,
+        "content": content,
         "comments": comments,
         'categories': categories,
         "form": CommentForm(),
@@ -98,3 +106,16 @@ def theme_toggle(request):
         request.session['theme'] = 'light'
     
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def content_check(content):
+
+    doc = BeautifulSoup(content, 'html.parser')
+    for img in doc.find_all('img', attrs={'data-source': True}):
+        image_source = img['data-source']
+        image_size = img['data-size']
+        imageDB = ImageDB.objects.get(gd_id = image_source)
+        img['src'] = f'https://drive.google.com/thumbnail?id={image_source}&sz=w{image_size}'
+        del img['data-source']
+        del img['data-size']
+
+    return doc.prettify(formatter="minimal")

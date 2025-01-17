@@ -1,6 +1,8 @@
-Django
+Django==4.2
 django_tinymce
 whitenoise
 mysqlclient
 Pillow
 django-compressor
+beautifulsoup4
+html5lib

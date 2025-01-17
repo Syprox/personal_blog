@@ -165,7 +165,7 @@ TINYMCE_DEFAULT_CONFIG = {
             contextmenu directionality searchreplace wordcount visualblocks\
             visualchars code fullscreen autolink lists charmap print hr\
             anchor pagebreak',
-    'toolbar1': ' blocks | bold italic underline strikethrough blockquote| bullist numlist table |\
+    'toolbar1': ' blocks | alignnone alignleft alignright aligncenter alignjustify | bold italic underline strikethrough blockquote| bullist numlist table |\
             | link image media codesample | charmap hr nonbreaking anchor | ',
     'toolbar2': 'fullscreen preview | visualblocks visualchars | code | pastetext | removeformat |',
     'contextmenu': 'formats | link image',
