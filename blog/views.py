@@ -112,8 +112,26 @@ def content_check(content):
     doc = BeautifulSoup(content, 'html.parser')
     for img in doc.find_all('img', attrs={'data-source': True}):
         image_source = img['data-source']
-        image_size = img['data-size']
-        imageDB = ImageDB.objects.get(gd_id = image_source)
+        
+        try:
+            image_size = img['data-size']
+        except:
+            try:
+                image_class=img['class']
+                if "left" in img['class'] or "right" in img['class']:
+                    image_size = 300
+                elif "full-width" in img['class']:
+                    image_size = 2000
+                else:
+                    image_size = 1000
+            except:
+                image_size = 1000
+                
+
+        try:
+            imageDB = ImageDB.objects.get(gd_id = image_source)
+        except:
+            pass
         img['src'] = f'https://drive.google.com/thumbnail?id={image_source}&sz=w{image_size}'
         del img['data-source']
         del img['data-size']
