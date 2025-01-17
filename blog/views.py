@@ -35,8 +35,6 @@ def blog_index(request, slug=None):
         first_image = pc.img.extract()
         prev_images.append(first_image)
         post.content = pc.prettify(formatter="minimal")
-
-    print(prev_images)
         
     context = {'page': page_number,
                 'category': category,
