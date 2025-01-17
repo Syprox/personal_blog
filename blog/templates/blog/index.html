@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load index %}
 {% block page_content %}
   {% include 'blog/categories_list.html' %}
   <section class="posts_list">
@@ -13,6 +14,9 @@
       {% for post in posts %}
         <div class="post_preview">
           <h2><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h2>
+
+          {{ prev_images|index:forloop.counter0|safe }}
+
           {% include 'blog/post_info.html' %}
           <div class="content_preview">{{ post.content|slice:':400'|safe }}...</div>
         </div>

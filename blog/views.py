@@ -27,14 +27,23 @@ def blog_index(request, slug=None):
     posts_on_page = 3
     page_number = request.GET.get('page')
     post_in_current_page = get_posts_list(posts, page_number, posts_on_page)
+    prev_images = []
 
     for post in post_in_current_page:
-        post.content = content_check(post.content)
+        post.content = content_handler(post.content, True)
+        pc = BeautifulSoup(post.content, 'html.parser')
+        first_image = pc.img.extract()
+        prev_images.append(first_image)
+        post.content = pc.prettify(formatter="minimal")
 
+    print(prev_images)
+        
     context = {'page': page_number,
                 'category': category,
                 'categories': categories,
                 'posts': post_in_current_page,
+                'posts_on_page': posts_on_page,
+                'prev_images': prev_images,
                 }
     return render(request,
                   'blog/index.html',
@@ -57,10 +66,10 @@ def blog_detail(request, slug):
             )
             comment.save()
             return HttpResponseRedirect(request.path_info)
-    print("Вибраний допис: " + str(post.post_id))
+    
     comments = Comment.objects.filter(post=post)
 
-    content = content_check(post.content)
+    content = content_handler(post.content, False)
 
     context = {
         "post": post,
@@ -107,32 +116,39 @@ def theme_toggle(request):
     
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
-def content_check(content):
-
+def content_handler(content="",list=False):
+    image_class=""
     doc = BeautifulSoup(content, 'html.parser')
     for img in doc.find_all('img', attrs={'data-source': True}):
         image_source = img['data-source']
-        
-        try:
-            image_size = img['data-size']
-        except:
+        clst = ' '.join(img.get('class', []))
+       
+        if list:
+            image_size = 200
+            img['class'] = re.sub(r'\b(left|right|center|full-width)\b','', clst)
+            img['class'] = img.get('class', []) + 'left'
+        else:
             try:
-                image_class=img['class']
-                if "left" in img['class'] or "right" in img['class']:
-                    image_size = 300
-                elif "full-width" in img['class']:
-                    image_size = 2000
-                else:
-                    image_size = 1000
+                image_size = img['data-size']
             except:
-                image_size = 1000
-                
+                if not re.search(r'\bleft\b|\bright\b|\bfull-width\b|\bcenter\b', clst):
+                    img['class'] = img.get('class', []) + 'center'
+                try:
+                    if "left" in img['class'] or "right" in img['class']:
+                        image_size = 300
+                    elif "full-width" in img['class']:
+                        image_size = 2000
+                    else:
+                        image_size = 1200
+                except:
+                    image_size = 1200
 
         try:
             imageDB = ImageDB.objects.get(gd_id = image_source)
         except:
             pass
         img['src'] = f'https://drive.google.com/thumbnail?id={image_source}&sz=w{image_size}'
+        
         del img['data-source']
         del img['data-size']
 

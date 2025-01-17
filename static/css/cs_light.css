@@ -33,20 +33,4 @@
 
 html {
   color-scheme: light;
-}
-
-a,
-a:visited {
-  color: var(--clr-link);
-}
-
-a:hover {
-  color: var(--clr-linkhover);
-}
-
-main aside a {
-  background-color: var(--clr-link-bg);
-}
-main aside a:hover, main aside a:focus, main aside a:active {
-  background-color: var(--clr-linkhover-bg);
 }/*# sourceMappingURL=cs_light.css.map */
