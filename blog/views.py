@@ -35,7 +35,7 @@ def blog_index(request, slug=None):
         try:
             first_image = pc.img.extract()
         except:
-            first_image = "<p></p>"
+            first_image = '<span data-info="The post has no images"></span>'
         prev_images.append(first_image)
         post.content = pc.prettify(formatter="minimal")
         
