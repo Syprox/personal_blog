@@ -118,9 +118,22 @@ def theme_toggle(request):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 def content_handler(content="",list=False):
-    image_class=""
+
+    # images handler start
     doc = BeautifulSoup(content, 'html.parser')
     for img in doc.find_all('img', attrs={'data-source': True}):
+        img_origin = False
+        try:
+            if img['data-size'] == "":
+                img_origin = img['data-origin']
+        except:
+            pass
+        if img['alt'] == "":
+            try:
+                info = ImageDB.objects.get(gd_id = img['data-source'])
+                img['alt'] = info.title
+            except:
+                pass
         image_source = img['data-source']
         clst = ' '.join(img.get('class', []))
        
@@ -128,6 +141,8 @@ def content_handler(content="",list=False):
             image_size = 200
             img['class'] = re.sub(r'\b(left|right|center|full-width)\b','', clst)
             img['class'] = img.get('class', []) + 'left'
+        elif img_origin:
+            pass
         else:
             try:
                 image_size = img['data-size']
@@ -138,19 +153,21 @@ def content_handler(content="",list=False):
                     if "left" in img['class'] or "right" in img['class']:
                         image_size = 300
                     elif "full-width" in img['class']:
-                        image_size = 2000
+                        image_size = 1200
                     else:
                         image_size = 1200
                 except:
                     image_size = 1200
 
-        try:
-            imageDB = ImageDB.objects.get(gd_id = image_source)
-        except:
-            pass
-        img['src'] = f'https://drive.google.com/thumbnail?id={image_source}&sz=w{image_size}'
+        if img_origin:
+            if img['data-origin'] == 'True':
+                img['src'] = f'https://drive.google.com/thumbnail?id={image_source}'
+        else:
+            img['src'] = f'https://drive.google.com/thumbnail?id={image_source}&sz=w{image_size}'
         
         del img['data-source']
         del img['data-size']
+        del img['data-origin']
+    # images handler end
 
     return doc.prettify(formatter="minimal")

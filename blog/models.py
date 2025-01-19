@@ -102,7 +102,7 @@ class Image(models.Model):
 class ImageDB (models.Model):
     image_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100, verbose_name="Назва")
-    gd_id = models.CharField(max_length=33, null=False)
+    gd_id = models.CharField(max_length=33, null=False, unique=True)
     added_on = models.DateTimeField(default=timezone.now, verbose_name="Дата створення допису", editable=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='added_by',  verbose_name="Автор")
     source = models.TextField(max_length=500, null=True)

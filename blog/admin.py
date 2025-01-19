@@ -23,8 +23,8 @@ class CommentAdmin(admin.ModelAdmin):
     pass
 
 class ImageDBAdmin(admin.ModelAdmin):
-    list_display = ('title', 'gd_id', 'added_on')
-    search_fields = ['title', 'gd_id']
+    list_display = ('title', 'gd_id', 'source')
+    search_fields = ['title', 'gd_id', 'source']
 
 admin.site.register(Category, CategoryAdmin)
 """  """
