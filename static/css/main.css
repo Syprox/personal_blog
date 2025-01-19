@@ -18,9 +18,9 @@
   --theme-icon-shadow: 0px 0px 6px (--clr-text);
   --border: 1px solid var(--clr-border);
   --padding-inline: 0rem;
-  --content-max-width: 66rem;
+  --content-max-width: 80rem;
   --content-min-width: 40rem;
-  --wider-block-max-width: 80rem;
+  --wider-block-max-width: 100rem;
   --wider-block-size: calc(
     (var(--wider-block-max-width) - var(--content-max-width)) / 2
   );
@@ -43,6 +43,7 @@
 }
 
 html {
+  position: relative;
   font-size: 16px;
   min-height: 100vh;
   color-scheme: light dark;
@@ -148,6 +149,7 @@ footer {
 }
 
 #menu_bg {
+  display: none;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -157,11 +159,15 @@ footer {
   visibility: hidden;
   opacity: 0;
   transition: all var(--tr-time) ease-in-out;
+  transition-behavior: allow-discrete;
 }
 #menu_bg.visible {
+  display: block;
   opacity: 1;
   visibility: visible;
   transition: all var(--tr-time) ease-in-out;
+  z-index: inherit;
+  transition-behavior: allow-discrete;
 }
 
 .information {
@@ -419,8 +425,12 @@ main h5,
 main h6 {
   color: var(--clr-text);
 }
+main .post_preview {
+  margin-top: 2em;
+  clear: both;
+}
 main .post_preview img {
-  width: clamp(200px, 30%, 300px);
+  width: clamp(150px, 30%, 200px);
 }
 main article,
 main .post_preview {
@@ -635,7 +645,6 @@ footer {
     display: none;
   }
   header .wrapper nav {
-    display: flex;
     visibility: hidden;
     gap: 0;
     flex-direction: column;
@@ -657,7 +666,7 @@ footer {
   header .wrapper nav.open {
     visibility: visible;
     opacity: 1;
-    right: 1em;
+    right: 8px;
     transition: all var(--tr-time) ease-out;
     transition-behavior: allow-discrete;
   }
