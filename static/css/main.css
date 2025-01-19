@@ -615,7 +615,7 @@ footer {
     display: none;
   }
   header .wrapper nav {
-    display: flex;
+    display: none;
     gap: 0;
     flex-direction: column;
     align-items: flex-start;
