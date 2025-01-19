@@ -13,8 +13,15 @@
         </small>
       </div>
     </div>
+    {% comment %} <div class="search">
+      <form action="{% url 'search' 'Found' %}" method="POST">
+        {% csrf_token %}
+        {{ search_form.as_p }}
+        <input type="submit" value="Знайти" id="find" />
+      </form>
+    </div> {% endcomment %}
     <nav aria-label="Pages list">
-      <div class="tags" id="tags">
+      <div class="tags" id="tags" title="Розділи">
         <strong>Розділи</strong>
         <div class="tags_items">
           {% for category in categories %}
@@ -22,21 +29,27 @@
           {% endfor %}
         </div>
       </div>
-      <a href="{% url 'blog_index' %}">Головна</a>
+      <a href="{% url 'blog_index' %}" id="main" title="На головну"><span>Головна</span></a>
 
-      <a href="{% url 'page_detail' 'about_me' %}">Про мене</a>
+      <a href="{% url 'page_detail' 'about_me' %}" id="about_me" title="Інформація про самопис"><span>Про мене</span></a>
 
-      <a href="{% url 'page_detail' 'contacts' %}">Контакти</a>
+      <a href="{% url 'page_detail' 'contacts' %}" id="contacts" title="Кінтакти"><span>Контакти</span></a>
+
+      <form action="{% url 'theme_toggle' %}" method="post" id="theme_toggle_form">
+        {% csrf_token %}
+        <button type="submit" id="theme_toggle_btn" aria-label="Switch theme">
+          {% if request.session.theme == 'light' %}
+            <img src="{% static 'img/moon_icon.svg' %}" alt="Перемкнути на темну тему" title="Перемкнути на темну тему" />
+          {% else %}
+            <img src="{% static 'img/sun_icon.svg' %}" alt="Перемкнути на світлу тему" title="Перемкнути на світлу тему" />
+          {% endif %}
+        </button>
+      </form>
     </nav>
-    <form action="{% url 'theme_toggle' %}" method="post">
-      {% csrf_token %}
-      <button type="submit" id="theme_toggle_btn" aria-label="Switch theme">
-        {% if request.session.theme == 'light' %}
-          <img src="{% static 'img/moon_icon.svg' %}" alt="Перемкнути на темну тему" title="Перемкнути на темну тему" />
-        {% else %}
-          <img src="{% static 'img/sun_icon.svg' %}" alt="Перемкнути на світлу тему" title="Перемкнути на світлу тему" />
-        {% endif %}
-      </button>
-    </form>
+    <div id="navShowHideBtn">
+      <svg width="24" height="20" viewBox="0 0 24 20" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+        <path id="hamburger" style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none" d="M 2,10 H 22 M 2,18 H 22 M 2,2 h 20" />
+      </svg>
+    </div>
   </div>
 </header>

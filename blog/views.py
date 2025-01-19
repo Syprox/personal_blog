@@ -5,12 +5,18 @@ from blog.forms import CommentForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import *
 from . import forms as f
+from . import util
 from django.shortcuts import redirect
 from bs4 import BeautifulSoup
 
 def page_detail(request, slug):
+    categories = Category.objects.get_queryset().order_by('name')
     page = Page.objects.get(slug=slug)
-    return render(request, 'blog/page.html', {'page': page})
+    context={
+        'page': page,
+        'categories': categories,
+    }
+    return render(request, 'blog/page.html', context)
 
 def blog_index(request, slug=None):
     
@@ -138,7 +144,7 @@ def content_handler(content="",list=False):
         clst = ' '.join(img.get('class', []))
        
         if list:
-            image_size = 200
+            image_size = 480
             img['class'] = re.sub(r'\b(left|right|center|full-width)\b','', clst)
             img['class'] = img.get('class', []) + 'left'
         elif img_origin:
@@ -171,3 +177,55 @@ def content_handler(content="",list=False):
     # images handler end
 
     return doc.prettify(formatter="minimal")
+
+def find_article(keyword):
+    import re
+    articles_list = util.list_entries()
+    res = [article for article in articles_list if re.search(
+        keyword, article, re.IGNORECASE)]
+
+    return (res)
+
+def search(form_data):
+
+    # отримання ключового слова з форми пошуку
+    keyword = form_data["keyword"]
+
+    # якщо статтю за запитом знайдено, то показати її
+    if util.get_entry(keyword) != None:
+        article_content = util.get_entry(keyword)
+
+        print("***Content: ***", article_content)
+
+        article_title = keyword
+        found = None
+
+        article_title = find_article(
+            keyword)[find_article(keyword).index(keyword)]
+
+        # ініціалізувати початкові дані для форм та форми
+        gettitleform_initial_dict = {"title": article_title, }
+        get_title_form = f.GetTitleForm(initial=gettitleform_initial_dict)
+
+    # якщо статтю не знайдено, то здійснити пошук за частиною назви
+    else:
+        # ініціалізувати початкові дані для форм та форми
+        gettitleform_initial_dict = {"title": "", }
+        get_title_form = f.GetTitleForm(initial=gettitleform_initial_dict)
+
+        article_title = u'Результат пошуку'
+        found = find_article(keyword)
+        if found != []:
+            article_content = "<p>Перелік статей, що найбільше відповідають вашому запиту:</p>"
+        else:
+            article_content = "<p>За вашим запитом нічого не знайдено.</p>"
+
+    context = {
+        "found": found,
+        "entries": util.list_entries(),
+        "search_form": f.SearchForm(),
+        "get_title_form": get_title_form,
+        "article_content": article_content,
+        "article_title": article_title, }
+
+    return (context)

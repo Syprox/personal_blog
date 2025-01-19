@@ -31,3 +31,14 @@ class ThemeToogleBtn(forms.Form):
     theme = forms.CharField(
         widget=forms.HiddenInput()
     )
+
+class SearchForm(forms.Form):
+    formtype = forms.CharField(widget=forms.HiddenInput(
+        attrs={
+            'value': 'search',
+        }))
+    keyword = forms.CharField(label="", widget=forms.TextInput(
+        attrs={
+            'placeholder': '\1F50D',
+            'class': 'search',
+        }))
