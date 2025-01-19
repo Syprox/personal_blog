@@ -11,12 +11,7 @@ navShowHideBtn.addEventListener('click', showHideNav);
 
 function showHideNav() {
     const nav = document.querySelector("nav");
-    if (nav.style.display == 'none') {
-        nav.style.display = 'flex';
-    }
-    else {
-        nav.style.display = 'none';
-    }
+    nav.classList.toggle('open');
 }
 
 //check the size of viewport and stop eventListener on tags button

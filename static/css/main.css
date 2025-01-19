@@ -304,6 +304,7 @@ header .wrapper #theme_toggle_form #theme_toggle_btn {
   padding: 0;
   cursor: pointer;
   line-height: 0;
+  z-index: 200;
 }
 header .wrapper #theme_toggle_form #theme_toggle_btn img {
   height: 24px;
@@ -629,6 +630,9 @@ footer {
     -webkit-backdrop-filter: blur(7px);
             backdrop-filter: blur(7px);
     background-color: var(--clr-header-bg-opc);
+  }
+  header .wrapper nav.open {
+    display: flex;
   }
   header .wrapper nav a {
     padding: 0.4em 1.2em 0.6em;
