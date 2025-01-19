@@ -1,5 +1,7 @@
 const tags = document.getElementById('tags');
 const navShowHideBtn = document.getElementById('navShowHideBtn');
+const nav = document.querySelector("nav");
+const bg = document.getElementById("menu_bg");
 
 tags.addEventListener('click', tagsShowHide);
 
@@ -8,10 +10,18 @@ function tagsShowHide() {
 }
 
 navShowHideBtn.addEventListener('click', showHideNav);
+bg.addEventListener('click', hideNav);
 
 function showHideNav() {
-    const nav = document.querySelector("nav");
     nav.classList.toggle('open');
+    bg.classList.toggle('visible');
+}
+
+function hideNav() {
+    if (nav.classList.contains('open')) {
+        nav.classList.toggle('open');
+        bg.classList.toggle('visible');
+    }
 }
 
 //check the size of viewport and stop eventListener on tags button

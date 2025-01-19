@@ -147,6 +147,23 @@ footer {
   --color: rgb(218, 193, 0);
 }
 
+#menu_bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background-color: var(--clr-bg-opc);
+  z-index: 190;
+  visibility: hidden;
+  opacity: 0;
+  transition: all var(--tr-time) ease-in-out;
+}
+#menu_bg.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: all var(--tr-time) ease-in-out;
+}
+
 .information {
   text-align: center;
   font-size: var(--fs--1);
@@ -160,6 +177,7 @@ header {
   box-shadow: var(--box-shadow);
   border-bottom: var(--border);
   border-top: var(--border);
+  z-index: 191;
   background-blend-mode: multiply;
 }
 header::before {
@@ -226,6 +244,7 @@ header .wrapper nav {
   align-items: center;
   justify-content: center;
   font-size: var(--fs--1);
+  z-index: 210;
 }
 header .wrapper nav a::before {
   padding: 0 0.4em;
@@ -616,13 +635,15 @@ footer {
     display: none;
   }
   header .wrapper nav {
-    display: none;
+    display: flex;
+    visibility: hidden;
     gap: 0;
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    right: 1em;
     top: 130%;
+    right: -10%;
+    opacity: 0;
     padding: 1em;
     border-radius: var(--br);
     box-shadow: var(--box-shadow);
@@ -630,9 +651,15 @@ footer {
     -webkit-backdrop-filter: blur(7px);
             backdrop-filter: blur(7px);
     background-color: var(--clr-header-bg-opc);
+    transition: all var(--tr-time) ease-out;
+    transition-behavior: allow-discrete;
   }
   header .wrapper nav.open {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    right: 1em;
+    transition: all var(--tr-time) ease-out;
+    transition-behavior: allow-discrete;
   }
   header .wrapper nav a {
     padding: 0.4em 1.2em 0.6em;
