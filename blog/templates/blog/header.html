@@ -14,6 +14,14 @@
       </div>
     </div>
     <nav aria-label="Pages list">
+      <div class="tags" id="tags">
+        <strong>Розділи</strong>
+        <div class="tags_items">
+          {% for category in categories %}
+            <a href="{% url 'blog_category' category.slug %}">{{ category.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
       <a href="{% url 'blog_index' %}">Головна</a>
 
       <a href="{% url 'page_detail' 'about_me' %}">Про мене</a>

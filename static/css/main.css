@@ -14,6 +14,8 @@
   --line-height-prev: 1.4;
   --img-margin: 5mm;
   --br: 0.4rem;
+  --box-shadow: 0px 3px 6px var(--clr-shadow);
+  --border: 1px solid var(--clr-border);
   --padding-inline: 0rem;
   --content-max-width: 66rem;
   --content-min-width: 40rem;
@@ -68,15 +70,6 @@ a:visited {
 a:hover {
   color: var(--clr-linkhover);
   transition: color var(--tr-time) ease-out;
-}
-
-main aside a {
-  background-color: var(--clr-link-bg);
-  transition: background-color var(--tr-time) ease-out;
-}
-main aside a:hover, main aside a:focus, main aside a:active {
-  background-color: var(--clr-linkhover-bg);
-  transition: background-color var(--tr-time) ease-out;
 }
 
 .content-grid,
@@ -157,9 +150,9 @@ footer {
 header {
   background-color: var(--clr-header-bg-opc);
   padding: 0.2em 0;
-  box-shadow: 0px 3px 6px var(--clr-shadow);
-  border-bottom: 1px solid var(--clr-border);
-  border-top: 1px solid var(--clr-border);
+  box-shadow: var(--box-shadow);
+  border-bottom: var(--border);
+  border-top: var(--border);
   -webkit-backdrop-filter: blur(7px);
           backdrop-filter: blur(7px);
   background-blend-mode: multiply;
@@ -204,6 +197,60 @@ header .wrapper nav {
   align-items: center;
   justify-content: center;
   font-size: var(--fs--1);
+}
+header .wrapper .tags {
+  position: relative;
+  height: 100%;
+  padding: 0.4em 1.2em 0.6em;
+  cursor: pointer;
+  border-radius: var(--br);
+}
+header .wrapper .tags:hover,
+header .wrapper .tags .open {
+  background-color: var(--clr-bg-opc);
+}
+header .wrapper .tags.open .tags_items {
+  display: flex;
+  top: 100%;
+  opacity: 1;
+  transition: display 0ms, all var(--tr-time) ease-out;
+  transition-behavior: allow-discrete;
+}
+header .wrapper .tags strong::before {
+  display: inline-block;
+  transform: rotate(45deg);
+  content: "𖤘";
+  padding-right: 0.3em;
+}
+header .wrapper .tags .tags_items {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  margin-top: 0.4em;
+  padding: 0.4em;
+  border-radius: var(--br);
+  background-color: var(--clr-link-bg);
+  top: 200%;
+  opacity: 0;
+  left: 0;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  transition: all var(--tr-time) ease-out;
+  transition-behavior: allow-discrete;
+}
+header .wrapper .tags .tags_items a {
+  padding: 0.4em 1em 0.5em 1.4em;
+  margin: 1px 0;
+  background-color: var(--clr-link-bg);
+  transition: background-color var(--tr-time) ease-out;
+}
+header .wrapper .tags .tags_items a:last-child {
+  padding-bottom: 0.7em;
+  margin-bottom: 0;
+}
+header .wrapper .tags .tags_items a:hover, header .wrapper .tags .tags_items a:focus, header .wrapper .tags .tags_items a:active {
+  background-color: var(--clr-linkhover-bg);
+  transition: background-color var(--tr-time) ease-out;
 }
 header .wrapper #theme_toggle_btn {
   background-color: transparent;
@@ -263,10 +310,16 @@ main aside h2::before {
 main aside a {
   padding: 0.4em 1em 0.5em 1.4em;
   margin: 1px 0;
+  background-color: var(--clr-link-bg);
+  transition: background-color var(--tr-time) ease-out;
 }
 main aside a:last-child {
   padding-bottom: 0.7em;
   margin-bottom: 0;
+}
+main aside a:hover, main aside a:focus, main aside a:active {
+  background-color: var(--clr-linkhover-bg);
+  transition: background-color var(--tr-time) ease-out;
 }
 main section h1:nth-child(1),
 main aside h2:nth-child(1) {
@@ -412,7 +465,7 @@ main .post_info .tag::before {
   font-size: var(--fs--2);
   transform: rotate(45deg);
   content: "𖤘";
-  padding: 0 0.2em;
+  padding: 0 0.4em;
 }
 main .comment_form {
   display: flex;
