@@ -18,7 +18,7 @@
           {{ prev_images|index:forloop.counter0|safe }}
 
           {% include 'blog/post_info.html' %}
-          <div class="content_preview">{{ post.content|safe }}...</div>
+          <div class="content_preview">{{ post.content|safe }}</div>
           {% comment %}|slice:':200'{% endcomment %}
         </div>
       {% endfor %}

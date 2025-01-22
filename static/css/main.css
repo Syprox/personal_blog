@@ -518,10 +518,21 @@ main article li:last-child {
   margin-bottom: 1.2em;
 }
 main article table {
-  margin: 1em 0;
+  margin: 1em auto;
   border-collapse: collapse;
   border: 1px solid vat(--clr-text);
+  border-radius: var(--br);
   font-size: var(--fs--1);
+}
+main article table caption {
+  font-family: "PT Sans", serif;
+  font-weight: 400;
+  font-style: italic;
+  text-align: right;
+}
+main article table caption::before {
+  content: "Таблиця " counter(table-counter) ". ";
+  counter-increment: table-counter;
 }
 main article table thead {
   background-color: var(--clr-header-bg-opc);
