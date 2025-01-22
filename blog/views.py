@@ -34,17 +34,35 @@ def blog_index(request, slug=None):
     page_number = request.GET.get('page')
     post_in_current_page = get_posts_list(posts, page_number, posts_on_page)
     prev_images = []
-
+    n=0
     for post in post_in_current_page:
-        post.content = content_handler(post.content, True)
+        n+=1
+        post.content = content_handler(post.content, True, n)
+        #print(f"Оброблено допис № {n}")
         pc = BeautifulSoup(post.content, 'html.parser')
+        
         try:
             first_image = pc.img.extract()
         except:
             first_image = '<span data-info="The post has no images"></span>'
+
         prev_images.append(first_image)
-        post.content = pc.prettify(formatter="minimal")
+
+        ph = [tag for tag in pc.find_all() if tag.name in ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']]
         
+        prev_len = 200
+        text = ''
+        l=0
+        while len(text) < prev_len:
+            text += ph[l].prettify(formatter="minimal")
+            l+=1
+        print(text)
+        #post.content = pc.
+        if len(text) == 0:
+            post.content = '<p></p>'
+        else:
+            post.content = text
+
     context = {'page': page_number,
                 'category': category,
                 'categories': categories,
@@ -123,11 +141,17 @@ def theme_toggle(request):
     
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
-def content_handler(content="",list=False):
+def content_handler(content="",list=False, n=0):
 
     # images handler start
     doc = BeautifulSoup(content, 'html.parser')
-    for img in doc.find_all('img', attrs={'data-source': True}):
+    #print(f"Починаю обробку зображень в допис № {n}")
+    i=0
+    imgs_list = doc.find_all('img', attrs={'data-source': True})
+    #print(f"У дописі № {n} знайдено {len(imgs_list)} зображень")
+    for img in imgs_list:
+        i+=1
+        #print(f"Обробка зображення {i} з {len(imgs_list)}")
         img_origin = False
         try:
             if img['data-size'] == "":

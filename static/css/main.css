@@ -645,6 +645,7 @@ footer {
     display: none;
   }
   header .wrapper nav {
+    display: none;
     visibility: hidden;
     gap: 0;
     flex-direction: column;
@@ -664,6 +665,7 @@ footer {
     transition-behavior: allow-discrete;
   }
   header .wrapper nav.open {
+    display: flex;
     visibility: visible;
     opacity: 1;
     right: 8px;

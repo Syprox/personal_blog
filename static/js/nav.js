@@ -10,22 +10,16 @@ function tagsShowHide() {
 }
 
 navShowHideBtn.addEventListener('click', showHideNav);
-bg.addEventListener('click', hideNav);
+bg.addEventListener('click', showHideNav);
 
 function showHideNav() {
     nav.classList.toggle('open');
     bg.classList.toggle('visible');
     if (nav.classList.contains('open')) {
         disableScroll();
+        nav.style.display = 'flex';
     } else {
         enableScroll();
-    }
-}
-
-function hideNav() {
-    if (nav.classList.contains('open')) {
-        nav.classList.toggle('open');
-        bg.classList.toggle('visible');
     }
 }
 
