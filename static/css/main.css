@@ -48,6 +48,9 @@ html {
   min-height: 100vh;
   color-scheme: light dark;
   overflow-x: clip;
+  max-width: 100vw;
+  scroll-behavior: smooth;
+  accent-color: var(--clr-header-bg);
 }
 
 body {
@@ -499,6 +502,11 @@ main article p {
   color: var(--clr-text);
   line-height: var(--line-height);
 }
+main article p iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em auto 2em;
+}
 main article ul,
 main article ol {
   line-height: var(--line-height);
@@ -508,6 +516,28 @@ main article li {
 }
 main article li:last-child {
   margin-bottom: 1.2em;
+}
+main article table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  border: 1px solid vat(--clr-text);
+}
+main article table thead {
+  background-color: var(--clr-header-bg-opc);
+  font-weight: 700;
+}
+main article table thead td {
+  text-align: center;
+  padding: 8px;
+}
+main article table tr td {
+  padding: 4px 8px;
+  border: 1px solid vat(--clr-text);
+}
+main article table tr td a::before {
+  content: "🔗";
+  font-size: var(--fs--2);
+  margin-right: 4px;
 }
 main .post_info {
   font-size: var(--fs-0);
