@@ -521,14 +521,13 @@ main article table {
   margin: 1em 0;
   border-collapse: collapse;
   border: 1px solid vat(--clr-text);
+  font-size: var(--fs--1);
 }
 main article table thead {
   background-color: var(--clr-header-bg-opc);
-  font-weight: 700;
 }
-main article table thead td {
-  text-align: center;
-  padding: 8px;
+main article table thead th {
+  padding: 0.4em 0.6em;
 }
 main article table tr td {
   padding: 4px 8px;

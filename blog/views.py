@@ -34,11 +34,11 @@ def blog_index(request, slug=None):
     page_number = request.GET.get('page')
     post_in_current_page = get_posts_list(posts, page_number, posts_on_page)
     prev_images = []
-    n=0
+   
     for post in post_in_current_page:
-        n+=1
-        post.content = content_handler(post.content, True, n)
-        #print(f"Оброблено допис № {n}")
+       
+        post.content = content_handler(post.content, True)
+       
         pc = BeautifulSoup(post.content, 'html.parser')
         
         try:
@@ -141,17 +141,15 @@ def theme_toggle(request):
     
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
-def content_handler(content="",list=False, n=0):
+def content_handler(content="",list=False):
 
-    # images handler start
+    
     doc = BeautifulSoup(content, 'html.parser')
-    #print(f"Починаю обробку зображень в допис № {n}")
-    i=0
+   # images handler start
     imgs_list = doc.find_all('img', attrs={'data-source': True})
-    #print(f"У дописі № {n} знайдено {len(imgs_list)} зображень")
+
     for img in imgs_list:
-        i+=1
-        #print(f"Обробка зображення {i} з {len(imgs_list)}")
+       
         img_origin = False
         try:
             if img['data-size'] == "":
