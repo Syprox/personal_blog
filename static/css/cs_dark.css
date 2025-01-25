@@ -21,7 +21,7 @@
   );
   --clr-text: hsl(0, 0%, 95%);
   --clr-header-text: hsl(0, 0%, 100%);
-  --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
+  --contrast: color-mix(in lab, currentcolor 20%, var(--clr-bg) 80%);
   --clr-border: color-mix(in lab, var(--clr-bg) 90%, var(--clr-text) 10%);
   --clr-box-border: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
   --clr-shadow: color-mix(

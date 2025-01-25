@@ -18,9 +18,9 @@
   --theme-icon-shadow: 0px 0px 6px (--clr-text);
   --border: 1px solid var(--clr-border);
   --padding-inline: 0rem;
-  --content-max-width: 80rem;
+  --content-max-width: 72rem;
   --content-min-width: 40rem;
-  --wider-block-max-width: 100rem;
+  --wider-block-max-width: 86rem;
   --wider-block-size: calc(
     (var(--wider-block-max-width) - var(--content-max-width)) / 2
   );
@@ -127,16 +127,16 @@ footer {
 
 .box {
   background: var(--contrast);
-  color: var(--color);
+  color: color-mix(in lab, var(--color) 70%, var(--clr-text) 30%);
   border: 1px solid var(--clr-box-border);
 }
 
 .box[data-type=warning] {
-  --color: rgb(224, 89, 89);
+  --color: rgb(255, 0, 0);
 }
 
 .box[data-type=info] {
-  --color: rgb(26, 26, 118);
+  --color: rgb(0, 81, 255);
 }
 
 .box[data-type=success] {
@@ -148,7 +148,7 @@ footer {
 }
 
 .box[data-type=attention] {
-  --color: rgb(218, 193, 0);
+  --color: rgb(255, 196, 0);
 }
 
 #menu_bg {
@@ -178,6 +178,10 @@ footer {
   font-size: var(--fs--1);
   padding: 0.6em;
   margin: 0.2em;
+}
+.information span::before {
+  content: "ℹ";
+  margin-right: 0.6em;
 }
 
 header {
@@ -429,15 +433,15 @@ main h6 {
   color: var(--clr-text);
 }
 main .post_preview {
-  margin-top: 2em;
-  clear: both;
+  overflow: auto;
 }
 main .post_preview img {
   width: clamp(150px, 30%, 200px);
+  margin-top: 0 !important;
 }
 main article,
 main .post_preview {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 main article .left,
 main .post_preview .left {
@@ -495,6 +499,14 @@ main article li::marker,
 main .post_preview li::marker {
   margin: 0 1em;
 }
+main article a:hover,
+main .post_preview a:hover {
+  text-decoration: underline;
+}
+main article a:hover::before,
+main .post_preview a:hover::before {
+  text-decoration: none !important;
+}
 main article p {
   margin: 0.8em 0;
   font-size: var(--fs-0);
@@ -505,7 +517,7 @@ main article p {
 main article p iframe {
   display: block;
   max-width: 100%;
-  margin: 1em auto 2em;
+  margin: 2em auto 2em;
 }
 main article ul,
 main article ol {
@@ -518,6 +530,7 @@ main article li:last-child {
   margin-bottom: 1.2em;
 }
 main article table {
+  width: clamp(480px, 100%, 1080px) !important;
   margin: 1em auto;
   border-collapse: collapse;
   border: 1px solid vat(--clr-text);

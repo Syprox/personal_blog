@@ -48,7 +48,7 @@ def blog_index(request, slug=None):
 
         prev_images.append(first_image)
 
-        ph = [tag for tag in pc.find_all() if tag.name in ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']]
+        ph = [tag for tag in pc.find_all() if tag.name in ['p']] #, 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
         
         prev_len = 200
         text = ''
@@ -61,6 +61,8 @@ def blog_index(request, slug=None):
         if len(text) == 0:
             post.content = '<p></p>'
         else:
+            if len(text) > prev_len + 100:
+                text = text[:prev_len + 100] + '...</>'
             post.content = text
 
     context = {'page': page_number,

@@ -7,8 +7,8 @@
       {% if category %}
         <span>Дописи у розділі</span><h1>«{{ category }}»</h1><hr />
       {% else %}
-        <h1>Усі дописи</h1>
-        <hr />
+        {% comment %} <h1>Усі дописи</h1>
+        <hr /> {% endcomment %}
       {% endif %}
 
       {% for post in posts %}
@@ -19,6 +19,7 @@
 
           {% include 'blog/post_info.html' %}
           <div class="content_preview">{{ post.content|safe }}</div>
+
           {% comment %}|slice:':200'{% endcomment %}
         </div>
       {% endfor %}
