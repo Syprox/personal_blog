@@ -44,8 +44,8 @@ function myFunction(x) {
     } else {
         tags.addEventListener('click', tagsShowHide);
         tags.classList.remove('close');
-        if (bg.classList.contains('visible')) {
-            bg.classList.remove('visible');
+        if (nav.classList.contains('open')) {
+            closeMobilNav();
         }
     }
 }

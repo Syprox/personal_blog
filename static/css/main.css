@@ -63,7 +63,7 @@ body {
   row-gap: var(--grid-row-gap);
   background-color: var(--clr-bg);
   color: var(--clr-text);
-  max-width: 100%;
+  width: max(320px, 100%);
 }
 
 a {
@@ -87,16 +87,18 @@ a:hover {
   grid-template-columns: [full-width-start] minmax(0, 1fr) [wider-block-start] minmax(0, var(--wider-block-size)) [content-start] min(100% - var(--padding-inline) * 2, var(--content-max-width)) [content-end] minmax(0, var(--wider-block-size)) [wider-block-end] minmax(0, 1fr) [full-width-end];
 }
 
-.content-grid > :not(.wider-block, .full-width),
-.full-width > :not(.wider-block, .full-width) {
+.content-grid > *,
+.full-width > * {
   grid-column: content;
 }
 
-.content-grid > .wider-block {
+.content-grid > .wider-block,
+.full-width > .wider-block {
   grid-column: wider-block;
 }
 
-.content-grid > .full-width {
+.content-grid > .full-width,
+.full-width > .full-width {
   grid-column: full-width;
 }
 
@@ -184,7 +186,7 @@ footer {
 
 header {
   background-color: var(--clr-header-bg-opc);
-  padding: 0.2em 1em;
+  /*padding: 0.2em 1em;*/
   box-shadow: var(--box-shadow);
   border-bottom: var(--border);
   border-top: var(--border);
@@ -387,6 +389,7 @@ aside a:hover, aside a:focus, aside a:active {
 }
 
 main {
+  width: 100%;
   margin: 1.6em 0;
 }
 main hr {
