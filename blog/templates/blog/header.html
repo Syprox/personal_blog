@@ -13,14 +13,14 @@
         </small>
       </div>
     </div>
-    {% comment %} <div class="search">
-      <form action="{% url 'search' 'Found' %}" method="POST">
-        {% csrf_token %}
-        {{ search_form.as_p }}
-        <input type="submit" value="Знайти" id="find" />
-      </form>
-    </div> {% endcomment %}
-    <nav aria-label="Pages list" class="">
+    {% comment %}
+    <form action="{% url 'search' 'Found' %}" method="POST">
+      {% csrf_token %}
+      {{ search_form.as_p }}
+      <input type="submit" value="Знайти" id="find" />
+    </form>
+    {% endcomment %}
+    <nav aria-label="Pages list" class="close">
       <div class="tags" id="tags" title="Розділи">
         <strong>Розділи</strong>
         <div class="tags_items">

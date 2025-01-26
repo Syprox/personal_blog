@@ -7,7 +7,7 @@
   --clr-header-bg-opc: hsla(0, 0%, 90%, var(--opc-lvl));
   --clr-text: hsl(0, 0%, 10%);
   --clr-header-text: hsl(0, 0%, 13%);
-  --contrast: color-mix(in lab, currentcolor 30%, var(--clr-bg) 70%);
+  --contrast: color-mix(in lab, currentcolor 15%, var(--clr-bg) 85%);
   --clr-border: white;
   --clr-box-border: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
   --clr-shadow: color-mix(

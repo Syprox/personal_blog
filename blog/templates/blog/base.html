@@ -5,7 +5,8 @@
   {% include 'blog/head.html' %}
 
   <body class="content-grid dark-theme">
-    <div id="menu_bg" class=""></div>
+    {% include 'blog/categories_list.html' %}
+
     {% include 'blog/information.html' %}
 
     {% include 'blog/header.html' %}
@@ -24,7 +25,7 @@
     </main>
 
     {% include 'blog/footer.html' %}
-
+    <div id="menu_bg" class="hide"></div>
     <script src="{% static 'js/main-script.js' %}"></script>
     <script src="{% static 'js/nav.js' %}"></script>
   </body>

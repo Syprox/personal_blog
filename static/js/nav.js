@@ -10,30 +10,48 @@ function tagsShowHide() {
 }
 
 navShowHideBtn.addEventListener('click', showHideNav);
-bg.addEventListener('click', showHideNav);
+
+
 
 function showHideNav() {
-    nav.classList.toggle('open');
-    bg.classList.toggle('visible');
-    if (nav.classList.contains('open')) {
-        disableScroll();
-        nav.style.display = 'flex';
+    if (nav.classList.contains('close')) {
+        openMobileNav();
     } else {
-        enableScroll();
+        closeMobilNav();
     }
+}
+
+function openMobileNav() {
+    bg.classList.toggle('visible');
+    nav.className = 'open';
+    bg.addEventListener('click', closeMobilNav);
+    disableScroll();
+}
+
+function closeMobilNav() {
+    nav.className = 'close';
+    bg.removeEventListener('click', closeMobilNav);
+    enableScroll();
+    bg.classList.toggle('visible');
 }
 
 //check the size of viewport and stop eventListener on tags button
 function myFunction(x) {
     if (x.matches) { // If media query matches
         tags.removeEventListener('click', tagsShowHide);
+        tags.classList.add('close');
+
     } else {
         tags.addEventListener('click', tagsShowHide);
+        tags.classList.remove('close');
+        if (bg.classList.contains('visible')) {
+            bg.classList.remove('visible');
+        }
     }
 }
 
 // Create a MediaQueryList object
-var x = window.matchMedia("(max-width: 768px)")
+var x = window.matchMedia("(max-width: 768px)");
 
 // Call listener function at run time
 myFunction(x);
