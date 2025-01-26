@@ -1,7 +1,7 @@
 {% load static %}
 
 <header class="full-width" aria-label="Site header conatiner">
-  <div class="wrapper wider-block">
+  <div class="wrapper full-width">
     <div id="logo">
       <a href="{% url 'blog_index' %}" title="На головну сторінку"><img src="{% static 'img/logo3_icon.svg' %}" alt="" /></a>
       <div class="logoletters">
@@ -13,13 +13,14 @@
         </small>
       </div>
     </div>
-    {% comment %}
-    <form action="{% url 'search' 'Found' %}" method="POST">
+
+    <!-- <form action="{% url 'search' 'Found' %}" method="POST"> -->
+    <form action="{% url 'search' 'Found' %}" method="POST" id="search_form">
       {% csrf_token %}
-      {{ search_form.as_p }}
-      <input type="submit" value="Знайти" id="find" />
+      {{ search_form }}
+      <input type="submit" value="🔍" id="find_btn" />
     </form>
-    {% endcomment %}
+
     <nav aria-label="Pages list" class="close">
       <div class="tags" id="tags" title="Розділи">
         <strong>Розділи</strong>

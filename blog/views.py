@@ -15,6 +15,7 @@ def page_detail(request, slug):
     context={
         'page': page,
         'categories': categories,
+        "search_form": f.SearchForm,
     }
     return render(request, 'blog/page.html', context)
 
@@ -56,21 +57,21 @@ def blog_index(request, slug=None):
         while len(text) < prev_len:
             text += ph[l].prettify(formatter="minimal")
             l+=1
-        print(text)
-        #post.content = pc.
+
         if len(text) == 0:
             post.content = '<p></p>'
         else:
             if len(text) > prev_len + 100:
                 text = text[:prev_len + 100] + '...</>'
             post.content = text
-
+    
     context = {'page': page_number,
                 'category': category,
                 'categories': categories,
                 'posts': post_in_current_page,
                 'posts_on_page': posts_on_page,
                 'prev_images': prev_images,
+                "search_form": f.SearchForm,
                 }
     return render(request,
                   'blog/index.html',
@@ -104,6 +105,7 @@ def blog_detail(request, slug):
         "comments": comments,
         'categories': categories,
         "form": CommentForm(),
+        "search_form": f.SearchForm,
     }
 
     return render(request, "blog/detail.html", context)

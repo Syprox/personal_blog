@@ -36,9 +36,10 @@ class SearchForm(forms.Form):
     formtype = forms.CharField(widget=forms.HiddenInput(
         attrs={
             'value': 'search',
+            'id': 'search_input',
         }))
     keyword = forms.CharField(label="", widget=forms.TextInput(
         attrs={
-            'placeholder': '\1F50D',
+            'placeholder': 'Пошук',
             'class': 'search',
         }))

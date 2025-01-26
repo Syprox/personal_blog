@@ -186,7 +186,7 @@ footer {
 
 header {
   background-color: var(--clr-header-bg-opc);
-  /*padding: 0.2em 1em;*/
+  padding: 0.2em 1em;
   box-shadow: var(--box-shadow);
   border-bottom: var(--border);
   border-top: var(--border);
@@ -252,7 +252,7 @@ header .wrapper #navShowHideBtn #hamburger {
 }
 header .wrapper nav {
   display: flex;
-  gap: 1em;
+  gap: 0.6em;
   list-style: none;
   align-items: center;
   justify-content: center;
@@ -266,7 +266,7 @@ header .wrapper nav #main::before {
   content: "🏠";
 }
 header .wrapper nav #about_me::before {
-  content: "ℹ";
+  content: "👤";
 }
 header .wrapper nav #contacts::before {
   content: "📧";
@@ -278,7 +278,8 @@ header .wrapper nav .tags {
   cursor: pointer;
   border-radius: var(--br);
 }
-header .wrapper nav .tags:hover, header .wrapper nav .tags.open {
+header .wrapper nav .tags:hover,
+header .wrapper nav .tags .open {
   background-color: var(--clr-bg-opc);
 }
 header .wrapper nav .tags.open .tags_items {
@@ -611,28 +612,6 @@ main .post_info .tag::before {
   content: "𖤘";
   padding: 0 0.4em;
 }
-main .comment_form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6em;
-}
-main .comment_form .comment_author,
-main .comment_form .comment_message {
-  font-family: "PT Sans", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: var(--fs--1);
-  display: block;
-  border: 1px solid var(--clr-header-bg);
-  background-color: var(--clr-header-bg-opc);
-  border-radius: var(--br);
-  outline: 0;
-  padding: 0.6em 1em;
-  width: clamp(320px, var(--content-min-width), 62%);
-}
-main .comment_form .comment_message {
-  border-bottom-right-radius: 0.4em;
-}
 main .comment_messages .comment {
   border: 1px solid var(--clr-secondary-text);
   border-radius: var(--br);
@@ -668,6 +647,62 @@ main .btn:hover {
   transition: background-color var(--tr-time) ease-out;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+form input,
+form textarea {
+  font-family: "PT Sans", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--fs--1);
+  display: block;
+  border: 1px solid var(--clr-header-bg);
+  background-color: var(--clr-header-bg-opc);
+  border-radius: var(--br);
+  outline: 0;
+  padding: 0.6em 1em;
+  width: clamp(320px, var(--content-min-width), 62%);
+}
+form textarea {
+  border-bottom-right-radius: 0.4em;
+}
+
+#search_form {
+  flex: 1 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  margin-right: -40px;
+  width: clamp(240px, 62%, min(62%, 240px));
+}
+#search_form input {
+  padding: 0.6em 42px 0.6em 1em;
+  border-radius: calc(var(--br) * 3);
+  font-size: var(--fs--2);
+  background-color: var(--clr-bg);
+  width: max(200px, 100%);
+}
+#search_form #find_btn {
+  flex: 0;
+  background-color: var(--clr-header-bg);
+  border: transparent;
+  cursor: pointer;
+  transform: translateX(-120%);
+  float: right;
+  padding: 0.4em;
+  height: 32px;
+  width: 32px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+}
+
 .pagination {
   margin-top: 2em;
 }
@@ -685,7 +720,7 @@ footer {
   padding: 1em;
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1380px) {
   header .wrapper nav .tags {
     display: block;
   }
@@ -696,15 +731,17 @@ footer {
     display: none;
   }
 }
+@media only screen and (max-width: 880px) {
+  header .wrapper #logo .logoletters small span {
+    display: none;
+  }
+}
 @media only screen and (max-width: 768px) {
   header .wrapper {
     position: relative;
   }
   header .wrapper #navShowHideBtn {
     display: flex;
-  }
-  header .wrapper #logo .logoletters small span {
-    display: none;
   }
   header .wrapper nav {
     gap: 0;
@@ -784,6 +821,9 @@ footer {
   }
 }
 @media only screen and (max-width: 480px) {
+  #search_form #id_keyword {
+    display: none;
+  }
   .post_preview img[src^="https://drive"] {
     display: block;
     float: none !important;
