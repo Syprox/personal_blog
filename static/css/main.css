@@ -169,7 +169,7 @@ footer {
   display: block;
   opacity: 1;
   visibility: visible;
-  transition: all var(--tr-time) ease-in-out;
+  transition: all var(--tr-time) ease-in-out 50ms;
   transition-behavior: allow-discrete;
 }
 
@@ -211,10 +211,11 @@ header .wrapper {
   gap: 1em;
 }
 header .wrapper #logo {
-  flex: 1;
+  flex: 3;
   display: flex;
   align-items: center;
   gap: 0.5em;
+  margin-right: auto;
 }
 header .wrapper #logo img {
   height: 42px;
@@ -671,14 +672,15 @@ form textarea {
 }
 
 #search_form {
-  flex: 1 0;
+  flex: 2 0;
   flex-direction: row;
   align-items: center;
   gap: 0;
   margin-right: -40px;
+  margin-left: auto;
   width: clamp(240px, 62%, min(62%, 240px));
 }
-#search_form input {
+#search_form #id_keyword {
   padding: 0.6em 42px 0.6em 1em;
   border-radius: calc(var(--br) * 3);
   font-size: var(--fs--2);
@@ -692,7 +694,7 @@ form textarea {
   cursor: pointer;
   transform: translateX(-120%);
   float: right;
-  padding: 0.4em;
+  padding: 4px 4px 6px 3px;
   height: 32px;
   width: 32px;
   aspect-ratio: 1/1;
@@ -821,8 +823,28 @@ footer {
   }
 }
 @media only screen and (max-width: 480px) {
+  main p {
+    -webkit-hyphens: auto;
+            hyphens: auto;
+    hyphenate-character: "﹘";
+  }
+  #search_form {
+    flex: 0 0;
+  }
   #search_form #id_keyword {
-    display: none;
+    width: 44px !important;
+    padding: 0.6em 1em;
+    background-color: transparent;
+    border: transparent;
+  }
+  #search_form #id_keyword::-moz-placeholder {
+    color: transparent;
+  }
+  #search_form #id_keyword::placeholder {
+    color: transparent;
+  }
+  #search_form #find_btn {
+    background-color: transparent;
   }
   .post_preview img[src^="https://drive"] {
     display: block;
