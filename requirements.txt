@@ -6,3 +6,4 @@ Pillow
 django-compressor
 beautifulsoup4
 html5lib
+django-pwa

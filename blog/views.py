@@ -20,62 +20,65 @@ def page_detail(request, slug):
     return render(request, 'blog/page.html', context)
 
 def blog_index(request, slug=None):
-    
-    category = False
-    
-    if slug is not None:
-        posts = Post.objects.filter(category__slug__icontains=slug, status=1).order_by("-created_on")
-        category = Category.objects.get(slug=slug)
+    if request.method == "POST" and f.SearchForm(request.POST).is_valid():
+        # отримати контекст та шаблон з функції selectaction
+        res = selectaction(request)
+
+        return render(request, res['template'], res['context'])
     else:
-        posts = Post.objects.filter(status=1).order_by('-created_on')
+        category = False
         
-    categories = Category.objects.get_queryset().order_by('name')
-
-    posts_on_page = 3
-    page_number = request.GET.get('page')
-    post_in_current_page = get_posts_list(posts, page_number, posts_on_page)
-    prev_images = []
-   
-    for post in post_in_current_page:
-       
-        post.content = content_handler(post.content, True)
-       
-        pc = BeautifulSoup(post.content, 'html.parser')
-        
-        try:
-            first_image = pc.img.extract()
-        except:
-            first_image = '<span data-info="The post has no images"></span>'
-
-        prev_images.append(first_image)
-
-        ph = [tag for tag in pc.find_all() if tag.name in ['p']] #, 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
-        
-        prev_len = 200
-        text = ''
-        l=0
-        while len(text) < prev_len:
-            text += ph[l].prettify(formatter="minimal")
-            l+=1
-
-        if len(text) == 0:
-            post.content = '<p></p>'
+        if slug is not None:
+            posts = Post.objects.filter(category__slug__icontains=slug, status=1).order_by("-created_on")
+            category = Category.objects.get(slug=slug)
         else:
-            if len(text) > prev_len + 100:
-                text = text[:prev_len + 100] + '...</>'
-            post.content = text
+            posts = Post.objects.filter(status=1).order_by('-created_on')
+            
+        categories = Category.objects.get_queryset().order_by('name')
+
+        posts_on_page = 3
+        page_number = request.GET.get('page')
+        post_in_current_page = get_posts_list(posts, page_number, posts_on_page)
+        prev_images = []
     
-    context = {'page': page_number,
-                'category': category,
-                'categories': categories,
-                'posts': post_in_current_page,
-                'posts_on_page': posts_on_page,
-                'prev_images': prev_images,
-                "search_form": f.SearchForm,
-                }
-    return render(request,
-                  'blog/index.html',
-                  context)
+        for post in post_in_current_page:
+        
+            post.content = content_handler(post.content, True)
+        
+            pc = BeautifulSoup(post.content, 'html.parser')
+            
+            try:
+                first_image = pc.img.extract()
+            except:
+                first_image = '<span data-info="The post has no images"></span>'
+
+            prev_images.append(first_image)
+
+            ph = [tag for tag in pc.find_all() if tag.name in ['p']] #, 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+            
+            prev_len = 200
+            text = ''
+            l=0
+            while len(text) < prev_len:
+                text += ph[l].prettify(formatter="minimal")
+                l+=1
+
+            if len(text) == 0:
+                post.content = '<p></p>'
+            else:
+                if len(text) > prev_len + 100:
+                    text = text[:prev_len + 100] + '...</>'
+                post.content = text
+        
+        context = {'page': page_number,
+                    'category': category,
+                    'categories': categories,
+                    'posts': post_in_current_page,
+                    'posts_on_page': posts_on_page,
+                    'prev_images': prev_images,
+                    "search_form": f.SearchForm,
+                    }
+        return render(request, 'blog/index.html', context)
 
 def blog_detail(request, slug):
     categories = Category.objects.get_queryset().order_by('name')
@@ -255,3 +258,6 @@ def search(form_data):
         "article_title": article_title, }
 
     return (context)
+
+def selectaction():
+    pass

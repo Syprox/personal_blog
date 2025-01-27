@@ -37,6 +37,7 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
+
 STATIC_ROOT  = BASE_DIR / 'staticfiles'
 if DEBUG == 'False':
     MEDIA_ROOT = 'home/syprox20/media.syprox.pp.ua/'
@@ -51,6 +52,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    'pwa',
     'compressor',
     'tinymce',
     'django.contrib.sitemaps',
@@ -172,3 +174,50 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
     }
+
+#site.webmanifest налаштування початок
+PWA_APP_NAME = 'CBC - Самопис'
+PWA_APP_DESCRIPTION = "Самопис викладача мистецьких дисциплін"
+PWA_APP_THEME_COLOR = '#3d1e67'
+PWA_APP_BACKGROUND_COLOR = '#fcfcfc'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/img/favicon/my_app_icon.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/img/favicon/my_apple_icon.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/img/icons/splash-640x1136.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'uk-UA'
+PWA_APP_SHORTCUTS = [
+    {
+        'name': 'Shortcut',
+        'url': '/target',
+        'description': 'Shortcut to a page in my application'
+    }
+]
+PWA_APP_SCREENSHOTS = [
+    {
+      'src': '/static/img/icons/splash-750x1334.png',
+      'sizes': '750x1334',
+      "type": "image/png"
+    }
+]
+PWA_APP_DEBUG_MODE = False
+#site.webmanifest налаштування кінець

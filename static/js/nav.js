@@ -1,4 +1,5 @@
 const tags = document.getElementById('tags');
+const tags_items = tags.querySelector('.tags_items a');
 const navShowHideBtn = document.getElementById('navShowHideBtn');
 const nav = document.querySelector("nav");
 const bg = document.getElementById("menu_bg");
@@ -6,7 +7,12 @@ const bg = document.getElementById("menu_bg");
 tags.addEventListener('click', tagsShowHide);
 
 function tagsShowHide() {
-    tags.classList.toggle('open');
+    if (tags.classList.contains('open')) {
+        tags.classList.toggle('open');
+    } else {
+        tags.classList.toggle('open');
+    }
+
 }
 
 navShowHideBtn.addEventListener('click', showHideNav);

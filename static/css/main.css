@@ -211,11 +211,11 @@ header .wrapper {
   gap: 1em;
 }
 header .wrapper #logo {
-  flex: 3;
   display: flex;
   align-items: center;
   gap: 0.5em;
   margin-right: auto;
+  flex: 3 0;
 }
 header .wrapper #logo img {
   height: 42px;
@@ -359,6 +359,7 @@ aside {
   font-style: normal;
   line-height: var(--fs-1);
   padding: 0 1em;
+  z-index: 150;
 }
 aside h2 {
   margin: 0;
@@ -391,6 +392,7 @@ aside a:hover, aside a:focus, aside a:active {
 }
 
 main {
+  z-index: 100;
   width: 100%;
   margin: 1.6em 0;
 }
@@ -672,28 +674,29 @@ form textarea {
 }
 
 #search_form {
-  flex: 2 0;
   flex-direction: row;
   align-items: center;
   gap: 0;
-  margin-right: -40px;
-  margin-left: auto;
-  width: clamp(240px, 62%, min(62%, 240px));
+  flex: 2 0;
+  background-color: var(--clr-bg-opc);
+  font-size: var(--fs--2);
+  border-radius: 100vw;
+  padding: 3px;
 }
 #search_form #id_keyword {
-  padding: 0.6em 42px 0.6em 1em;
-  border-radius: calc(var(--br) * 3);
-  font-size: var(--fs--2);
-  background-color: var(--clr-bg);
-  width: max(200px, 100%);
+  padding: 0.2em 0.6em 0.3em;
+  background-color: transparent;
+  border-radius: 100vw;
+  margin-right: 3px;
+  width: max(220px, 90%);
+  border: 0;
+  outline: 0;
+  width: clamp(200px, 100%, max(100%, 320px));
 }
 #search_form #find_btn {
-  flex: 0;
   background-color: var(--clr-header-bg);
   border: transparent;
   cursor: pointer;
-  transform: translateX(-120%);
-  float: right;
   padding: 4px 4px 6px 3px;
   height: 32px;
   width: 32px;
@@ -738,7 +741,7 @@ footer {
     display: none;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 790px) {
   header .wrapper {
     position: relative;
   }
@@ -846,15 +849,17 @@ footer {
   #search_form #find_btn {
     background-color: transparent;
   }
+  .post_preview {
+    /* .content_preview {
+      display: none;
+    } */
+  }
   .post_preview img[src^="https://drive"] {
     display: block;
     float: none !important;
     max-width: 100% !important;
     width: 100% !important;
     margin-inline: 0 !important;
-  }
-  .post_preview .content_preview {
-    display: none;
   }
   section img {
     float: none !important;
