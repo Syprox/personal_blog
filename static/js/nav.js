@@ -3,6 +3,8 @@ const tags_items = tags.querySelector('.tags_items a');
 const navShowHideBtn = document.getElementById('navShowHideBtn');
 const nav = document.querySelector("nav");
 const bg = document.getElementById("menu_bg");
+const show_search_btn = document.getElementById("show_search_btn");
+const search_form = document.getElementById("search_form");
 
 tags.addEventListener('click', tagsShowHide);
 
@@ -12,12 +14,33 @@ function tagsShowHide() {
     } else {
         tags.classList.toggle('open');
     }
+}
+
+function searchShowHide() {
+    if (search_form.classList.contains('show')) {
+        hideSearchForm();
+    }
+    else {
+        showSearchForm();
+    }
+}
+
+function showSearchForm() {
+    closeMobilNav();
+    bg.className = 'visible';
+    search_form.className = 'show';
+
+}
+
+function hideSearchForm() {
+
+    bg.className = 'hide';
+
+    search_form.className = '';
 
 }
 
 navShowHideBtn.addEventListener('click', showHideNav);
-
-
 
 function showHideNav() {
     if (nav.classList.contains('close')) {
@@ -28,7 +51,8 @@ function showHideNav() {
 }
 
 function openMobileNav() {
-    bg.classList.toggle('visible');
+    hideSearchForm();
+    bg.className = 'visible';
     nav.className = 'open';
     bg.addEventListener('click', closeMobilNav);
     disableScroll();
@@ -38,8 +62,21 @@ function closeMobilNav() {
     nav.className = 'close';
     bg.removeEventListener('click', closeMobilNav);
     enableScroll();
-    bg.classList.toggle('visible');
+    bg.className = 'hide';
 }
+
+function show_search_btn_activate(s) {
+    if (s.matches) {
+        show_search_btn.addEventListener('click', searchShowHide);
+    } else {
+        show_search_btn.removeEventListener('click', searchShowHide);
+    }
+}
+var s = window.matchMedia("(max-width: 480px)");
+show_search_btn_activate(s);
+s.addEventListener("change", function () {
+    show_search_btn_activate(s);
+});
 
 //check the size of viewport and stop eventListener on tags button
 function myFunction(x) {
