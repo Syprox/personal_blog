@@ -222,3 +222,6 @@ PWA_APP_SCREENSHOTS = [
 ]
 PWA_APP_DEBUG_MODE = False
 #site.webmanifest налаштування кінець
+
+COMPRESS_ENABLED = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
