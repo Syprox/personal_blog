@@ -838,7 +838,7 @@ footer {
 }
 @media only screen and (max-width: 480px) {
   header {
-    transition: margin 100ms;
+    transition: margin 100ms ease calc(var(--tr-time) * 2);
   }
   header .wrapper {
     gap: 0.6em;
@@ -871,7 +871,7 @@ footer {
   }
   header:has(#search_form[class=show]) {
     margin-bottom: calc((var(--header-height) + var(--header-block-padding)) / 2);
-    transition: margin 100ms;
+    transition: margin 100ms ease;
   }
   main p {
     -webkit-hyphens: auto;
