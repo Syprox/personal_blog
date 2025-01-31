@@ -7,8 +7,9 @@
   --clr-header-bg-opc: hsla(0, 0%, 90%, var(--opc-lvl));
   --clr-text: hsl(0, 0%, 10%);
   --clr-header-text: hsl(0, 0%, 13%);
-  --contrast: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
-  --clr-border: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
+  --contrast: color-mix(in lab, currentcolor 15%, var(--clr-bg) 85%);
+  --clr-border: white;
+  --clr-box-border: color-mix(in lab, currentcolor 65%, var(--clr-text) 20%);
   --clr-shadow: color-mix(
     in lab,
     var(--clr-link) 10%,
@@ -32,20 +33,4 @@
 
 html {
   color-scheme: light;
-}
-
-a,
-a:visited {
-  color: var(--clr-link);
-}
-
-a:hover {
-  color: var(--clr-linkhover);
-}
-
-main aside a {
-  background-color: var(--clr-link-bg);
-}
-main aside a:hover, main aside a:focus, main aside a:active {
-  background-color: var(--clr-linkhover-bg);
 }/*# sourceMappingURL=cs_light.css.map */

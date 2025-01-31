@@ -40,13 +40,18 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
 STATIC_ROOT  = BASE_DIR / 'staticfiles'
-if DEBUG == 'False':
+if DEBUG == False:
     MEDIA_ROOT = 'home/syprox20/media.syprox.pp.ua/'
     MEDIA_URL = 'https://media.syprox.pp.ua/'
 else:
     MEDIA_ROOT = BASE_DIR / 'media'
     MEDIA_URL = '/media/'
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder'
+]
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
