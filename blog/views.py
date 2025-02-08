@@ -21,9 +21,9 @@ def page_detail(request, slug):
     return render(request, 'blog/page.html', context)
 
 def blog_index(request, slug=None):
-    
+    query = ""
     category = False
-    if request.GET.get("q") != "":
+    if request.GET.get("q", "") != "":
         query = request.GET.get("q")
         posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
         print (len(posts))
