@@ -16,5 +16,5 @@ urlpatterns = [
     path("category/<slug>/", views.blog_index, name="blog_category"),
     path('upload/', views.image_upload_view, name="image_upload"),
     path("theme_toggle/", views.theme_toggle, name="theme_toggle"),
-    path("search/<str:keyword>", views.search, name="search"),
+    path("search/", views.blog_index, name="search"),
 ]

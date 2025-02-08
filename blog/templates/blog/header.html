@@ -14,9 +14,7 @@
       </div>
     </div>
 
-    <!-- <form action="{% url 'search' 'Found' %}" method="POST"> -->
-    <form action="{% url 'search' 'Found' %}" method="POST" id="search_form">
-      {% csrf_token %}
+    <form action="{% url 'search' %}" method="GET" id="search_form">
       {{ search_form }}
       <input type="submit" value="🔍" id="find_btn" />
     </form>
@@ -36,7 +34,7 @@
 
       <a href="{% url 'page_detail' 'contacts' %}" id="contacts" title="Кінтакти"><span>Контакти</span></a>
 
-      <form action="{% url 'theme_toggle' %}" method="post" id="theme_toggle_form">
+      <form action="{% url 'theme_toggle' %}" method="GET" id="theme_toggle_form">
         {% csrf_token %}
         <button type="submit" id="theme_toggle_btn" aria-label="Switch theme">
           {% if request.session.theme == 'light' %}

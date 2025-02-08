@@ -13,12 +13,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
-
 try:
     from dotenv import load_dotenv
     load_dotenv() # Завантаження змінних з .env файлу
+    prod = False
 except:
-    pass
+    prod = True
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +28,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False) == True
+if prod:
+    DEBUG = False
+else:
+    if os.environ.get('DEBUG') == 'True' or os.environ.get('DEBUG') == True:
+        DEBUG = True
+    else:
+        DEBUG = False
+
 
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
@@ -39,23 +46,21 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 # Application definition
 
 INSTALLED_APPS = [
-    'pwa',
-    'compressor',
-    'tinymce',
-    'django.contrib.sitemaps',
-    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'blog.apps.BlogConfig',
+    'pwa',
+    'compressor',
+    'tinymce',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'personal_blog.urls'
@@ -84,7 +90,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'personal_blog.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -143,8 +148,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
-
 STATIC_ROOT  = BASE_DIR / 'staticfiles'
+
 if DEBUG == False:
     MEDIA_ROOT = 'home/syprox20/media.syprox.pp.ua/'
     MEDIA_URL = 'https://media.syprox.pp.ua/'

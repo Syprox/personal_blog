@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, migrations
 from django.contrib.auth.models import User
 from django.urls import reverse
 from tinymce.models import HTMLField

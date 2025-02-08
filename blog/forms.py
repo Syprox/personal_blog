@@ -27,19 +27,10 @@ class ImageForm(forms.ModelForm):
         model = Image
         fields = ('title', 'slug', 'image')
 
-class ThemeToogleBtn(forms.Form):
-    theme = forms.CharField(
-        widget=forms.HiddenInput()
-    )
-
 class SearchForm(forms.Form):
-    formtype = forms.CharField(widget=forms.HiddenInput(
-        attrs={
-            'value': 'search',
-            'id': 'search_input',
-        }))
-    keyword = forms.CharField(label="", widget=forms.TextInput(
+    q = forms.CharField(label='',widget=forms.TextInput(
         attrs={
             'placeholder': 'Пошук',
-            'class': 'search',
+            'name':'q',
+            'id':'keyword',
         }))

@@ -695,7 +695,7 @@ form textarea {
   border-radius: 100vw;
   padding: 3px;
 }
-#search_form #id_keyword {
+#search_form #keyword {
   padding: 0.2em 0.6em 0.3em;
   background-color: transparent;
   border-radius: 100vw;
@@ -858,7 +858,7 @@ footer {
     transition: visibility var(--tr-time) ease;
     pointer-events: none;
   }
-  header #search_form #id_keyword {
+  header #search_form #keyword {
     border-radius: 100vw;
   }
   header #search_form #find_btn {
