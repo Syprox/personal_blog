@@ -53,7 +53,6 @@ html {
   font-size: 16px;
   min-height: 100vh;
   color-scheme: light dark;
-  overflow-x: clip;
   max-width: 100%;
   scroll-behavior: smooth;
   accent-color: var(--clr-header-bg);
@@ -287,6 +286,7 @@ header .wrapper nav #contacts::before {
 header .wrapper nav .tags {
   display: none;
   position: relative;
+  width: clamp(260px, 95%, 340px);
   padding: 0.4em 1.2em 0.6em;
   cursor: pointer;
   border-radius: var(--br);
@@ -310,6 +310,7 @@ header .wrapper nav .tags::before {
 }
 header .wrapper nav .tags .tags_items {
   position: absolute;
+  width: 250px;
   display: none;
   flex-direction: column;
   margin-top: 0.4em;
@@ -325,18 +326,23 @@ header .wrapper nav .tags .tags_items {
   transition-behavior: allow-discrete;
 }
 header .wrapper nav .tags .tags_items a {
+  color: var(--clr-secondary-text);
   padding: 0.4em 1em 0.5em 1.4em;
   margin: 1px 0;
   background-color: var(--clr-link-bg);
-  transition: background-color var(--tr-time) ease-out;
+  transition: all var(--tr-time) ease-out 60ms;
+  text-wrap: nowrap;
+  flex: 1 0;
 }
 header .wrapper nav .tags .tags_items a:last-child {
   padding-bottom: 0.7em;
   margin-bottom: 0;
 }
 header .wrapper nav .tags .tags_items a:hover, header .wrapper nav .tags .tags_items a:focus, header .wrapper nav .tags .tags_items a:active {
+  color: var(--clr-text);
   background-color: var(--clr-linkhover-bg);
-  transition: background-color var(--tr-time) ease-out;
+  text-indent: 0.4em;
+  transition: all var(--tr-time) ease-out;
 }
 header .wrapper #theme_toggle_form {
   line-height: 0;
@@ -362,8 +368,7 @@ aside {
   position: absolute;
   left: 0;
   top: 7em;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: clamp(280px, (100% - var(--content-max-width)) / 2 - 1em, 340px);
   display: flex;
   flex-direction: column;
   font-family: "PT Sans Narrow", serif;
@@ -389,18 +394,24 @@ aside h2::before {
   padding: 0.3em;
 }
 aside a {
+  color: var(--clr-secondary-text);
   padding: 0.4em 1em 0.5em 1.4em;
   margin: 1px 0;
   background-color: var(--clr-link-bg);
-  transition: background-color var(--tr-time) ease-out;
+  transition: all var(--tr-time) ease-out 60ms;
+  text-wrap: nowrap;
+  flex: 1 0;
+  text-indent: 0;
 }
 aside a:last-child {
   padding-bottom: 0.7em;
   margin-bottom: 0;
 }
 aside a:hover, aside a:focus, aside a:active {
+  color: var(--clr-text);
   background-color: var(--clr-linkhover-bg);
-  transition: background-color var(--tr-time) ease-out;
+  text-indent: 0.4em;
+  transition: all var(--tr-time) ease-out;
 }
 
 main {
@@ -821,7 +832,7 @@ footer {
     border-color: transparent;
     box-shadow: none;
     opacity: 1;
-    transition: display 0ms, all var(--tr-time) ease-out;
+    transition: display 0ms, all var(--tr-time) ease-out 100ms;
     transition-behavior: allow-discrete;
   }
   header .wrapper nav .tags .tags_items a {
@@ -848,6 +859,9 @@ footer {
   }
   header .wrapper #show_search_btn {
     display: block;
+  }
+  header .wrapper nav {
+    padding-inline: 0;
   }
   header #search_form {
     position: absolute;

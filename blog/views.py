@@ -10,6 +10,7 @@ from django.shortcuts import redirect
 from bs4 import BeautifulSoup
 from django.db.models import Q
 
+
 def page_detail(request, slug):
     categories = Category.objects.get_queryset().order_by('name')
     page = Page.objects.get(slug=slug)
@@ -204,3 +205,4 @@ def content_handler(content="",list=False):
     # images handler end
 
     return doc.prettify(formatter="minimal")
+

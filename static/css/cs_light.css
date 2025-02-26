@@ -17,8 +17,8 @@
   );
   --clr-secondary-text: color-mix(
     in lab,
-    var(--clr-text) 70%,
-    var(--clr-bg) 30%
+    var(--clr-text) 80%,
+    var(--clr-bg) 20%
   );
   --clr-link-base: hsl(265, 67%, 33%);
   --clr-link: color-mix(in lab, var(--clr-link-base) 90%, var(--clr-text) 5%);
