@@ -76,9 +76,9 @@ a {
   text-decoration: none;
 }
 
-a,
-a:visited {
-  color: var(--clr-link);
+a {
+  color: var(--clr-text);
+  /* border-bottom: 2px solid var(--clr-link); */
   transition: color var(--tr-time) ease-out;
 }
 
@@ -231,6 +231,7 @@ header .wrapper #logo a {
   font-weight: 700;
   display: flex;
   align-items: center;
+  color: var(--clr-link);
 }
 header .wrapper #logo .logoletters {
   display: flex;
@@ -296,7 +297,8 @@ header .wrapper nav .tags .open {
   background-color: var(--clr-bg-opc);
 }
 header .wrapper nav .tags.open .tags_items {
-  display: flex;
+  overflow: clip;
+  visibility: visible;
   top: 100%;
   opacity: 1;
   transition: display 0ms, all var(--tr-time) ease-out 100ms;
@@ -310,11 +312,12 @@ header .wrapper nav .tags::before {
 }
 header .wrapper nav .tags .tags_items {
   position: absolute;
-  width: 250px;
-  display: none;
+  width: 256px;
+  visibility: hidden;
+  display: flex;
   flex-direction: column;
   margin-top: 0.4em;
-  padding: 0.4em;
+  padding: 0;
   border-radius: var(--br);
   background-color: var(--clr-link-bg);
   top: 200%;
@@ -327,7 +330,7 @@ header .wrapper nav .tags .tags_items {
 }
 header .wrapper nav .tags .tags_items a {
   color: var(--clr-secondary-text);
-  padding: 0.4em 1em 0.5em 1.4em;
+  padding: 0.4em 1em 0.5em 1.3em;
   margin: 1px 0;
   background-color: var(--clr-link-bg);
   transition: all var(--tr-time) ease-out 60ms;
@@ -346,6 +349,7 @@ header .wrapper nav .tags .tags_items a:hover, header .wrapper nav .tags .tags_i
 }
 header .wrapper #theme_toggle_form {
   line-height: 0;
+  margin-left: 0.6em;
 }
 header .wrapper #theme_toggle_form #theme_toggle_btn {
   background-color: transparent;
@@ -395,7 +399,7 @@ aside h2::before {
 }
 aside a {
   color: var(--clr-secondary-text);
-  padding: 0.4em 1em 0.5em 1.4em;
+  padding: 0.4em 1em 0.5em 1.3em;
   margin: 1px 0;
   background-color: var(--clr-link-bg);
   transition: all var(--tr-time) ease-out 60ms;
@@ -470,7 +474,7 @@ main .post_preview img {
 }
 main article,
 main .post_preview {
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 main article .left,
 main .post_preview .left {
@@ -528,9 +532,22 @@ main article li::marker,
 main .post_preview li::marker {
   margin: 0 1em;
 }
+main article a,
+main .post_preview a {
+  color: var(--clr-text);
+  border-bottom: 2px solid var(--clr-link);
+}
+main article h1 a,
+main article h2 a,
+main .post_preview h1 a,
+main .post_preview h2 a {
+  text-decoration: none;
+  border: none;
+}
 main article a:hover,
 main .post_preview a:hover {
-  text-decoration: underline;
+  color: var(--clr-link);
+  text-decoration: none;
 }
 main article a:hover::before,
 main .post_preview a:hover::before {
@@ -627,9 +644,20 @@ main .post_info .post_tags {
   display: block;
   margin-top: 0.4em;
 }
+main .post_info .post_tags a {
+  display: inline-block;
+  color: var(--clr-link-base);
+  border: none;
+  padding: 1px 9px 3px 4px;
+  border-radius: 10px;
+  background-color: var(--clr-link-bg);
+}
+main .post_info .post_tags a:hover {
+  background-color: color-mix(in hsl, var(--clr-link-bg) 95%, var(--clr-text) 5%);
+}
 main .post_info .tag {
   text-wrap: nowrap;
-  margin-right: 0.4em;
+  margin-bottom: 2px;
 }
 main .post_info .tag::before {
   display: inline-block;
@@ -752,6 +780,9 @@ footer {
   header .wrapper nav .tags {
     display: block;
   }
+  header .wrapper nav a {
+    margin: 0 !important;
+  }
   header .wrapper nav a span {
     display: none;
   }
@@ -803,24 +834,20 @@ footer {
     transition-behavior: allow-discrete;
   }
   header .wrapper nav a {
-    padding: 0.4em 1.2em 0.6em;
+    padding: 0.4em 0px 0.6em;
   }
   header .wrapper nav a::before {
     padding-left: 0 !important;
-    margin-right: 1em !important;
   }
   header .wrapper nav a span {
     display: inline;
   }
   header .wrapper nav .tags {
+    padding: 0.4em 0px 0.6em;
     background-color: transparent !important;
   }
   header .wrapper nav .tags:hover {
     background-color: transparent;
-  }
-  header .wrapper nav .tags::before {
-    padding-left: 0.6em;
-    margin-right: 0.6em;
   }
   header .wrapper nav .tags strong {
     cursor: default;
@@ -853,15 +880,15 @@ footer {
   }
   header .wrapper {
     gap: 0.6em;
+    /* nav {
+      padding-inline: 0;
+    } */
   }
   header .wrapper #logo img {
     --logo-size: 36px;
   }
   header .wrapper #show_search_btn {
     display: block;
-  }
-  header .wrapper nav {
-    padding-inline: 0;
   }
   header #search_form {
     position: absolute;

@@ -36,7 +36,7 @@ else:
     else:
         DEBUG = False
 
-
+SITE_ID = 1
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
@@ -57,6 +57,9 @@ INSTALLED_APPS = [
     'compressor',
     'tinymce',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
+    'django_comments_xtd',
+    'django_comments',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +75,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'personal_blog.urls'
+
+COMMENTS_APP = 'django_comments_xtd'
+COMMENTS_XTD_MAX_THREAD_LEVEL = 2
+COMMENTS_XTD_CONFIRM_EMAIL = True
 
 TEMPLATES = [
     {

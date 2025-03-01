@@ -17,15 +17,15 @@
   );
   --clr-secondary-text: color-mix(
     in lab,
-    var(--clr-text) 80%,
-    var(--clr-bg) 20%
+    var(--clr-text) 90%,
+    var(--clr-bg) 10%
   );
-  --clr-link-base: hsl(265, 67%, 33%);
+  --clr-link-base: hsl(265, 68%, 45%);
   --clr-link: color-mix(in lab, var(--clr-link-base) 90%, var(--clr-text) 5%);
   --clr-linkhover: color-mix(
     in lab,
-    var(--clr-link-base) 70%,
-    var(--clr-text) 30%
+    var(--clr-link-base) 90%,
+    var(--clr-text) 10%
   );
   --clr-link-bg: color-mix(in lab, currentcolor 5%, var(--clr-bg) 95%);
   --clr-linkhover-bg: color-mix(in lab, currentcolor 10%, var(--clr-bg) 90%);
