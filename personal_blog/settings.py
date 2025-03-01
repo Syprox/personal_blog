@@ -76,9 +76,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'personal_blog.urls'
 
+# Налаштування системи для коментарів
 COMMENTS_APP = 'django_comments_xtd'
 COMMENTS_XTD_MAX_THREAD_LEVEL = 2
 COMMENTS_XTD_CONFIRM_EMAIL = True
+
+EMAIL_HOST = "smtp.mail.com"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = os.environ.get('EMAIL_ADDRESS')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+DEFAULT_FROM_EMAIL = f"Інформац <{os.environ.get('EMAIL_ADDRESS')}>"
+# Налаштування системи для коментарів
 
 TEMPLATES = [
     {

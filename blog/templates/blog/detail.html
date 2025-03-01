@@ -7,8 +7,8 @@
       {% include 'blog/post_info.html' %}
       {{ content|safe }}
     </article>
-    {% if post %}
+    {% comment %} {% if post %}
       {% include 'blog/comments.html' %}
-    {% endif %}
+    {% endif %} {% endcomment %}
   </section>
 {% endblock %}

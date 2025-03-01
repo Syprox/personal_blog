@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('', include('pwa.urls')),
+    path('comments/', include('django_comments_xtd.urls')),
 ]
 
 if settings.DEBUG:
