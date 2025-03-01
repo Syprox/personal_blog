@@ -104,12 +104,14 @@ function myFunction(x) {
         tags.removeEventListener('click', tagsShowHide);
         tags.classList.add('close');
         bg.className = 'hide';
+        tagsOpen;
     } else {
         tags.addEventListener('click', tagsShowHide);
         tags.classList.remove('close');
         if (nav.classList.contains('open')) {
             closeMobilNav();
         }
+        tagsClose;
     }
 }
 

@@ -342,7 +342,7 @@ header .wrapper nav .tags .tags_items a:last-child {
   margin-bottom: 0;
 }
 header .wrapper nav .tags .tags_items a:hover, header .wrapper nav .tags .tags_items a:focus, header .wrapper nav .tags .tags_items a:active {
-  color: var(--clr-text);
+  color: var(--clr-link);
   background-color: var(--clr-linkhover-bg);
   text-indent: 0.4em;
   transition: all var(--tr-time) ease-out;
@@ -412,7 +412,7 @@ aside a:last-child {
   margin-bottom: 0;
 }
 aside a:hover, aside a:focus, aside a:active {
-  color: var(--clr-text);
+  color: var(--clr-link);
   background-color: var(--clr-linkhover-bg);
   text-indent: 0.4em;
   transition: all var(--tr-time) ease-out;
@@ -857,6 +857,7 @@ footer {
   }
   header .wrapper nav .tags .tags_items {
     display: flex;
+    visibility: visible;
     position: relative;
     background-color: transparent !important;
     border-color: transparent;
