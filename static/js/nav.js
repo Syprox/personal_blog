@@ -8,6 +8,12 @@ const search_form = document.getElementById("search_form");
 
 tags.addEventListener('click', tagsShowHide);
 
+const stickyElm = document.querySelector('header');
+const observer = new IntersectionObserver(
+    ([e]) => e.target.classList.toggle('isSticky', e.intersectionRatio < 1),
+    { threshold: [1] }
+);
+observer.observe(stickyElm);
 
 function tagsShowHide() {
     if (tags.classList.contains('open')) {

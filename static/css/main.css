@@ -14,7 +14,7 @@
   --line-height-prev: 1.4;
   --img-margin: 5mm;
   --br: 0.4rem;
-  --logo-size: 42px;
+  --logo-size: 40px;
   --header-block-padding: 0.4em;
   --header-inline-padding: 1em;
   --header-height: calc(
@@ -115,10 +115,24 @@ a:hover {
 header {
   grid-row: header;
   position: sticky;
-  top: 0;
+  top: -1px;
   left: 0;
   right: 0;
   z-index: 100;
+  transition: all 0.1s ease-out;
+}
+
+header.isSticky {
+  box-shadow: var(--box-shadow);
+  font-size: 80% !important;
+  transition: all 0.2s ease-out;
+}
+header.isSticky .wrapper nav {
+  font-size: var(--fs--2);
+  transition: all 0.2s ease-out;
+}
+header.isSticky .wrapper #logo img {
+  height: calc(var(--logo-size) * 0.8);
 }
 
 main {
@@ -193,7 +207,6 @@ footer {
 header {
   background-color: var(--clr-header-bg-opc);
   padding: var(--header-block-padding) var(--header-inline-padding);
-  box-shadow: var(--box-shadow);
   border-bottom: var(--border);
   border-top: var(--border);
   z-index: 191;
@@ -243,7 +256,7 @@ header .wrapper #logo .logoletters .desc {
   flex-direction: column;
   gap: 0;
   font-size: 0.6em;
-  line-height: var(--fs--2);
+  line-height: var(--fs--3);
 }
 header .wrapper #show_search_btn {
   cursor: pointer;
@@ -270,6 +283,7 @@ header .wrapper nav {
   align-items: center;
   justify-content: center;
   font-size: var(--fs--1);
+  transition: all 0.2s ease-out;
   z-index: 210;
 }
 header .wrapper nav a::before {
@@ -777,6 +791,70 @@ footer {
   font-size: var(--fs--2);
   color: var(--clr-secondary-text);
   padding: 1em;
+}
+
+.youtube {
+  background-color: var(--clr-header-bg);
+  margin-bottom: 2em;
+  position: relative;
+  padding-top: 56.25%;
+  overflow: clip;
+  cursor: pointer;
+}
+
+.youtube img {
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  margin: 0;
+}
+
+.youtube .play-button {
+  width: 90px;
+  height: 60px;
+  background-color: red;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  opacity: 0.9;
+  border-radius: 0.6em;
+}
+
+.youtube .play-button:before {
+  content: "";
+  border-style: solid;
+  border-width: 15px 0 15px 26px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.youtube img,
+.youtube .play-button {
+  cursor: pointer;
+}
+
+.youtube img,
+.youtube iframe,
+.youtube .play-button,
+.youtube .play-button:before {
+  position: absolute;
+}
+
+.youtube .play-button,
+.youtube .play-button:before {
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.youtube .play-button:before {
+  transform: translate3d(-40%, -50%, 0);
+}
+
+.youtube iframe {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 @media only screen and (max-width: 1380px) {
