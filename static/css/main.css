@@ -566,17 +566,18 @@ main article a:hover,
 main .post_preview a:hover {
   color: var(--clr-link);
 }
+main article iframe {
+  display: block;
+  width: clamp(320px, 100%, 720px);
+  margin: 2em auto 2em;
+  box-shadow: var(--box-shadow);
+}
 main article p {
   margin: 0.8em 0;
   font-size: var(--fs-0);
   text-indent: 1.2em;
   color: var(--clr-text);
   line-height: var(--line-height);
-}
-main article p iframe {
-  display: block;
-  width: clamp(320px, 100%, 720px);
-  margin: 2em auto 2em;
 }
 main article ul,
 main article ol {
