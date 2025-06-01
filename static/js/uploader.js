@@ -17,8 +17,11 @@ if (document.querySelector('.youtube')) {
             var iframe = document.createElement("iframe");
 
             iframe.setAttribute("frameborder", "0");
+            iframe.setAttribute("title", "YouTube video player");
+            iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+            iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
             iframe.setAttribute("allowfullscreen", "");
-            iframe.setAttribute("src", "https://www.youtube.com/embed/" + this.dataset.embed + "?rel=0&showinfo=0&autoplay=1");
+            iframe.setAttribute("src", "https://www.youtube.com/embed/" + this.dataset.embed);
 
             this.innerHTML = "";
             this.appendChild(iframe);
